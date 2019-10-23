@@ -1,0 +1,2 @@
+# bed-bath-beyonce
+Bed, Bath, &amp; Beyonce would like to tackle the Department of Education – Aloha + Curricular Database Challenge by creating a user-friendly platform for professionals, students, and the general public alike to strive towards a greener, more sustainable Hawaii by fostering community and coalitions. Our web-based platform will seamlessly allow users to easily broadcast their projects/programs, provide support in various forms, and communicate effortlessly with one another.
