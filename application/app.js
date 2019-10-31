@@ -1,4 +1,5 @@
 const express = require('express');
+const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const expressSession = require('express-session');
 
@@ -10,7 +11,8 @@ const app = express();
 
 
 //Set middleware
-app.set('view engine', 'ejs');
+app.engine('hbs', exphbs({extname: '.hbs'}));
+app.set('view engine', 'hbs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static('./assets'));
