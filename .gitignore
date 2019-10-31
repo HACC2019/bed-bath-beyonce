@@ -1,0 +1,34 @@
+# .gitignore #
+##############
+#The gitignore specifies what folders, files, extensions, and more based on matching sets to exclude items from commits.
+
+# Program and System Generated Files #
+######################################
+.DS_Store
+.icloud
+Desktop.ini
+.git
+.vscode
+*.code-workspace
+
+# Temporary Files and Directories #
+###################################
+temp.*
+temp
+TEMP.*
+TEMP
+TEMP/
+temp/
+
+# Dependency directories #
+##########################
+node_modules/
+
+# Optional npm cache directory #
+################################
+.npm
+
+# Output of 'npm pack' #
+########################
+*.tgz
+
