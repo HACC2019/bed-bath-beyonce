@@ -2,6 +2,7 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const expressSession = require('express-session');
+const connection = require('./models/connection')
 
 //Routes
 const homepage = require('./routes/route-homepage');
@@ -9,6 +10,9 @@ const homepage = require('./routes/route-homepage');
 //Start express server
 const app = express();
 
+//Connect with MongoDB
+const path ='mongodb+srv://cluster0-6qtxk.mongodb.net/test'
+connection();
 
 //Set middleware
 app.engine('hbs', exphbs({extname: '.hbs'}));
