@@ -6,8 +6,8 @@ var User = require('../models/model-user');
 router.get('/', function(req, res){
 
     var user = new User({
+        email: 'csparks1@email.com',
         fname: 'Chris',
-        mname: 'D',
         lname: 'Sparks'
     });
 
