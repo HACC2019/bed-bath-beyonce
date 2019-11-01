@@ -1,6 +1,7 @@
 const express = require('express');
 const expressHandlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
+const expressValidator = require('express-validator');
 const expressSession = require('express-session');
 const connection = require('./models/connection')
 
@@ -16,12 +17,18 @@ const path ='mongodb+srv://cluster0-6qtxk.mongodb.net/test'
 connection();
 
 //Setting view engine to use handlebars
-app.engine('hbs', expressHandlebars({extname: '.hbs', defaultLayout: 'view-layout', layoutsDir: './views/'}));
+app.engine('hbs', expressHandlebars({extname: '.hbs', defaultLayout: 'layout', layoutsDir: './views/'}));
 app.set('view engine', 'hbs');
 
 //Setting other middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(expressValidator());
+app.use(expressSession({
+    secret: 'max',
+    saveUninitialized: false,
+    resave: false
+}));
 app.use(express.static('./assets'));
 
 //Set routes pathways
