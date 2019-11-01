@@ -14,5 +14,4 @@ const userSchema = new Schema({
 
 const user = mongoose.model('user', userSchema);
 
-//Export as mongoose model for business operations on the database
 module.exports = user;

@@ -1,39 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
+{{!-- {% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul>
+    {% for message in messages %}
+    <li class="error">{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %} --}}
+<h1>Register</h1>
+<form action="/register" method="post">
+    <p>First Name: <input type="text" name="fn" id=""></p>
+    <p>Last Name: <input type="text" name="ln" id=""></p>
+    <p>Email: <input type="text" name="email" id=""></p>
+    <p>Password: <input type="password" name="pass" id=""></p>
+    <p>Confirm Password: <input type="password" name="con_pass" id=""></p>
+    <input type="submit" value="Register!">
+</form>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login and Registration Landing</title>
-</head>
-
-<body>
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    <ul>
-        {% for message in messages %}
-        <li class="error">{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-    {% endwith %}
-    <h1>Register</h1>
-    <form action="/register" method="post">
-        <p>First Name: <input type="text" name="fn" id=""></p>
-        <p>Last Name: <input type="text" name="ln" id=""></p>
-        <p>Email: <input type="text" name="email" id=""></p>
-        <p>Password: <input type="password" name="pass" id=""></p>
-        <p>Confirm Password: <input type="password" name="con_pass" id=""></p>
-        <input type="submit" value="Register!">
-    </form>
-
-    <h1>Login</h1>
-    <form action="/login" method="post">
-        <p>Email: <input type="text" name="email" id=""></p>
-        <p>Password: <input type="password" name="pass" id=""></p>
-        <input type="submit" value="Login!">
-    </form>
-</body>
-
-</html>
+<h1>Login</h1>
+<form action="/login" method="post">
+    <p>Email: <input type="text" name="email" id=""></p>
+    <p>Password: <input type="password" name="pass" id=""></p>
+    <input type="submit" value="Login!">
+</form>

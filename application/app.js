@@ -1,11 +1,12 @@
 const express = require('express');
-const exphbs = require('express-handlebars');
+const expressHandlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
 const expressSession = require('express-session');
 const connection = require('./models/connection')
 
 //Routes
 const homepage = require('./routes/route-homepage');
+const login = require('./routes/route-login');
 
 //Start express server
 const app = express();
@@ -14,15 +15,18 @@ const app = express();
 const path ='mongodb+srv://cluster0-6qtxk.mongodb.net/test'
 connection();
 
-//Set middleware
-app.engine('hbs', exphbs({extname: '.hbs'}));
+//Setting view engine to use handlebars
+app.engine('hbs', expressHandlebars({extname: '.hbs', defaultLayout: 'view-layout', layoutsDir: './views/'}));
 app.set('view engine', 'hbs');
+
+//Setting other middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static('./assets'));
 
 //Set routes pathways
 app.use('/', homepage);
+app.use('/login', login);
 
 //Set server to listen to listen on defined port and log startup console
 const port = 6066;
