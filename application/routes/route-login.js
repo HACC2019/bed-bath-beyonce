@@ -6,14 +6,16 @@ var User = require('../models/model-user');
 router.get('/', function(req, res){
 
     res.render('view-login', {
-        title: 'login'
+        title: 'login',
+        signin_errors: JSON.stringify(req.session.signin_errors),
+        signin_data: JSON.stringify(req.session.signin_data) 
     });
 });
 
 router.post('/signin', function(req, res){
 
     //Save filled form data
-    req.session.login_data = [
+    req.session.signin_data = [
         {
             name: 'email',
             value: req.body.email
@@ -61,10 +63,10 @@ router.post('/signin', function(req, res){
 
     var errors = req.getValidationResult();
     errors.then(function(result) {
-        req.session.login_errors = result.array({ onlyFirstError: true });
-        if (req.session.login_errors.length > 0) {
-            console.log('login contains errors:');
-            console.log(req.session.login_errors);
+        req.session.signin_errors = result.array({ onlyFirstError: true });
+        if (req.session.signin_errors.length > 0) {
+            console.log('signin contains errors:');
+            console.log(req.session.signin_errors);
             res.redirect('/login');
         } 
         else {
