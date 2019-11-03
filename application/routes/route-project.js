@@ -5,14 +5,15 @@ var Project = require('../models/model-project');
 
 router.get('/', function(req, res){
 
-    res.render('view-project-page', {
-        title: 'project-page',
+    res.render('view-project', {
+        title: 'project',
         project: {
             name: '<NAME>',
             date: '<DATE>',
             address: '<ADDRESS>',
             description: '<DESCRIPTION>'
-        }
+        },
+        user: req.session.user
     });
 });
 
@@ -26,7 +27,8 @@ router.get('/:id', function(req, res){
         else{
             res.render('view-project-page', {
                 title: 'project-page',
-                project: result
+                project: result,
+                user: req.session.user
             });
         }
     });
