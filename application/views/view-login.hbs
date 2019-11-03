@@ -2,13 +2,20 @@
 <h1>Register</h1>
 <a href="#" id="yesaccount">Already have an account?</a>
 <form class="signup" action="/login/signup" method="post">
-    <p>First Name: <input type="text" name="fname"></p>
-    <p>Last Name: <input type="text" name="lname"></p>
-    <p>Email: <input type="text" name="email"></p>
-    <p>Password: <input type="password" name="password"></p>
-    <p>Confirm Password: <input type="password" name="confirmpassword"></p>
-    <p>School: <input type="text" name="school"></p>
-    <p>Organization: <input type="text" name="organization"></p>
+    <p></p>
+    <select name="accounttype">
+        <option value="null" selected hidden>Choose account type</option>
+        <option value="student">Student</option>
+        <option value="professional">Professional</option>
+        <option value="organization">Organization</option>
+    </select>
+    <p class="fname">First Name: <input type="text" name="fname"></p>
+    <p class="lname">Last Name: <input type="text" name="lname"></p>
+    <p class="email">Email: <input type="text" name="email"></p>
+    <p class="password">Password: <input type="password" name="password"></p>
+    <p class="confirmpassword">Confirm Password: <input type="password" name="confirmpassword"></p>
+    <p class="organization">Organization: <input type="text" name="organization"></p>
+    <p class="school">School: <input type="text" name="school"></p>
     <input type="submit" value="Register!">
 </form>
 </div>
@@ -26,14 +33,16 @@
 <script>
     $(function(){
 
-        var state = {{{state}}};
-        if(state == 'signin'){
+        //Tracks the login state of page: either signin page or signup page
+        var page = {{{page}}};
+        if(page == 'signin'){
             $('#signup').hide();
         }
-        if(state == 'signup'){
+        if(page == 'signup'){
             $('#signin').hide();
         }
 
+        //Switches state of page with animation
         $('#noaccount').click(function(){
             $('#signup').show(500);
             $('#signin').hide();
@@ -42,6 +51,41 @@
         $('#yesaccount').click(function(){
             $('#signin').show(500);
             $('#signup').hide();
+        });
+
+        
+        $('[name = accounttype]').change(function(){
+            var selected = $('[name = accounttype] option:selected').val();
+            if(selected == 'student'){
+                $('form.signup p.fname').show();
+                $('form.signup p.lname').show();
+                $('form.signup p.email').show();
+                $('form.signup p.password').show();
+                $('form.signup p.confirmpassword').show();
+                $('form.signup p.organization').hide();
+                $('form.signup p.school').show();
+            }
+            else if(selected == 'professional'){
+                $('form.signup p.fname').show();
+                $('form.signup p.lname').show();
+                $('form.signup p.email').show();
+                $('form.signup p.password').show();
+                $('form.signup p.confirmpassword').show();
+                $('form.signup p.organization').hide();
+                $('form.signup p.school').show();
+            }
+            else if(selected == 'organization'){
+                $('form.signup p.fname').show();
+                $('form.signup p.lname').show();
+                $('form.signup p.email').show();
+                $('form.signup p.password').show();
+                $('form.signup p.confirmpassword').show();
+                $('form.signup p.organization').show();
+                $('form.signup p.school').hide();
+            }
+            else{
+                console.log('Change function error');
+            }
         });
 
         //Handles signin validation retreived from server 

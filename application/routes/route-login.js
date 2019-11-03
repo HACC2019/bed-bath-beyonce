@@ -9,7 +9,7 @@ var visited = false;
 router.get('/', function(req, res){
 
     if(!visited){
-        req.session.state = 'signin'
+        req.session.page = 'signin';
         req.session.signin_errors = null;
         req.session.signin_data = null;
         req.session.signup_errors = null;
@@ -19,7 +19,7 @@ router.get('/', function(req, res){
     //Display login page with the following variables to be used by handlebars or jquery
     res.render('view-login', {
         title: 'login',
-        state: JSON.stringify(req.session.state),
+        page: JSON.stringify(req.session.page),
         signin_errors: JSON.stringify(req.session.signin_errors),
         signin_data: JSON.stringify(req.session.signin_data),
         signup_errors: JSON.stringify(req.session.signup_errors),
@@ -96,7 +96,7 @@ router.post('/signin', function(req, res){
             console.log('signin contains errors:');
             console.log(req.session.signin_errors);
             visited = true;
-            req.session.state = 'signin';
+            req.session.page = 'signin';
             res.redirect('/login');
         } 
         //If no errors, user session set and return to homepage
@@ -114,6 +114,10 @@ router.post('/signin', function(req, res){
 router.post('/signup', function(req, res){
     //Save filled form data
     req.session.signup_data = [
+        {
+            name: 'accounttype',
+            value: req.body.accounttype
+        },
         {
             name: 'fname',
             value: req.body.fname
@@ -165,9 +169,13 @@ router.post('/signup', function(req, res){
     req.check('password', 'Password must be at least 8 characters').isLength({min: 8});
     req.check('password', 'Password must be less than 73 characters').isLength({max: 72});
     req.check('confirmpassword', 'Passwords do not match').equals(req.body.password);
-    req.check('school', 'School is required').notEmpty();
-    req.check('organization', 'Organization is required').notEmpty();
-
+    if(req.body.accounttype == 'professional' || req.body.accounttype == 'student'){
+        req.check('school', 'School is required').notEmpty();
+    }
+    if(req.body.accounttype == 'organization'){
+        req.check('organization', 'Organization is required').notEmpty();
+    }
+    
     //Store errors
     var errors = req.getValidationResult();
 
@@ -181,7 +189,7 @@ router.post('/signup', function(req, res){
             console.log('signup contains errors:');
             console.log(req.session.signup_errors);
             visited = true;
-            req.session.state = 'signup';
+            req.session.page = 'signup';
             res.redirect('/login');
         } 
         //If no errors, create a new user in the database and redirect to scuccess page
