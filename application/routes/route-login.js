@@ -13,17 +13,19 @@ router.get('/', function(req, res){
         req.session.signin_errors = null;
         req.session.signin_data = null;
         req.session.signup_errors = null;
-        req.session.signup_data = null; 
+        req.session.signup_data = null;
+        req.sessions
     }
 
-    //Display login page with the following variables to be used by handlebars or jquery
+    //Display login page with the following variables to be used by ejs or jquery
     res.render('view-login', {
         title: 'login',
         page: JSON.stringify(req.session.page),
         signin_errors: JSON.stringify(req.session.signin_errors),
         signin_data: JSON.stringify(req.session.signin_data),
         signup_errors: JSON.stringify(req.session.signup_errors),
-        signup_data: JSON.stringify(req.session.signup_data)
+        signup_data: JSON.stringify(req.session.signup_data),
+        user: req.session.user
     });
 
     //Clear errors and saved data after page has been rendered
@@ -31,6 +33,7 @@ router.get('/', function(req, res){
     req.session.signin_data = null;
     req.session.signup_errors = null;
     req.session.signup_data = null;
+    req.session.save()
 });
 
 //Handles request for signing in
@@ -197,8 +200,8 @@ router.post('/signup', function(req, res){
             var user = new User({
                 email: req.body.email,
                 password: req.body.password,
-                fname: req.body.firstname,
-                lname: req.body.lastname,
+                fname: req.body.fname,
+                lname: req.body.lname,
                 school: req.body.school,
                 organization: req.body.organization,
                 account_type: req.body.accounttype

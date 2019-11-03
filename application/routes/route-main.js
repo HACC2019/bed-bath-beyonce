@@ -3,41 +3,43 @@ var router = express.Router();
 
 router.get('/', function(req, res){
 
-    res.redirect('/home-page');
+    res.redirect('/homepage');
 });
 
-router.get('/home-page', function(req, res){
+router.get('/homepage', function(req, res){
 
-    res.render('view-home-page', {
-        title: 'home-page'
+    res.render('view-homepage', {
+        title: 'homepage',
+        user: req.session.user
     });
 });
 
 router.get('/contact', function(req, res){
 
     res.render('view-contact', {
-        title: 'contact'
-    });
-});
-
-router.get('/landing-page', function(req, res){
-
-    res.render('view-landing-page', {
-        title: 'landing-page'
+        title: 'contact',
+        user: req.session.user
     });
 });
 
 router.get('/projects-with-sidebar', function(req, res){
 
     res.render('view-projects-with-sidebar', {
-        title: 'projects-with-sidbar'
+        title: 'projects-with-sidbar',
+        user: req.session.user
     });
 });
 
-router.get('/Success', function (req, res) {
+router.get('/logout', function(req, res){
+    req.session.user = null;
+    res.redirect('/');
+});
+
+router.get('/success', function (req, res) {
 
     res.render('view-success', {
-        title: 'success'
+        title: 'success',
+        user: req.session.user
     });
        
 });

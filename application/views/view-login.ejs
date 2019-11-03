@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+    <% include partials/head %>
+    <% include partials/nav %>
+    <body>
+        <main>
+            <section class="portfolio-block block-intro">
+            <div id="signup">
+            <h1>Register</h1>
+            <a href="#" id="yesaccount">Already have an account?</a>
+            <form class="signup" action="/login/signup" method="post">
+            <p></p>
+            <select name="accounttype">
+                <option value="null" selected hidden>Choose account type</option>
+                <option value="student">Student</option>
+                <option value="professional">Professional</option>
+                <option value="organization">Organization</option>
+            </select>
+            <p class="fname">First Name: <input type="text" name="fname"></p>
+            <p class="lname">Last Name: <input type="text" name="lname"></p>
+            <p class="email">Email: <input type="text" name="email"></p>
+            <p class="password">Password: <input type="password" name="password"></p>
+            <p class="confirmpassword">Confirm Password: <input type="password" name="confirmpassword"></p>
+            <p class="organization">Organization: <input type="text" name="organization"></p>
+            <p class="school">School: <input type="text" name="school"></p>
+            <input type="submit" value="Register!" class="register">
+            </form>
+            </div>
+
+            <div id="signin">
+            <h1>Login</h1>
+            <a href="#" id="noaccount">Don't have an account?</a>
+            <form class="signin" action="/login/signin" method="post">
+            <p>Email: <input type="text" name="email"></p>
+            <p>Password: <input type="password" name="password"></p>
+            <input type="submit" value="Login!">
+            </form>
+            </div>
+            </section>
+        </main>
+
+        <script>
+        $(function(){
+
+            //Tracks the login state of page: either signin page or signup page
+            var page = <%- page %>;
+            if(page == 'signin'){
+                $('#signup').hide();
+            }
+            else if(page == 'signup'){
+                $('#signin').hide();
+            }
+            else if(page == 'initial'){
+                $('#signup').hide();
+                $('form.signup p.fname').hide();
+                $('form.signup p.lname').hide();
+                $('form.signup p.email').hide();
+                $('form.signup p.password').hide();
+                $('form.signup p.confirmpassword').hide();
+                $('form.signup p.organization').hide();
+                $('form.signup p.school').hide();
+                $('form.signup .register').hide();
+            }
+            else{
+                console.log('Page tracking change error');
+            }
+            
+
+            //Switches state of page with animation
+            $('#noaccount').click(function(){
+                $('#signup').show(500);
+                $('#signin').hide();
+            });
+
+            $('#yesaccount').click(function(){
+                $('#signin').show(500);
+                $('#signup').hide();
+            });
+
+            
+            $('[name = accounttype]').change(function(){
+                var selected = $('[name = accounttype] option:selected').val();
+                if(selected == 'student'){
+                    $('form.signup p.fname').show();
+                    $('form.signup p.lname').show();
+                    $('form.signup p.email').show();
+                    $('form.signup p.password').show();
+                    $('form.signup p.confirmpassword').show();
+                    $('form.signup p.organization').hide();
+                    $('form.signup p.school').show();
+                    $('form.signup .register').show();
+                }
+                else if(selected == 'professional'){
+                    $('form.signup p.fname').show();
+                    $('form.signup p.lname').show();
+                    $('form.signup p.email').show();
+                    $('form.signup p.password').show();
+                    $('form.signup p.confirmpassword').show();
+                    $('form.signup p.organization').hide();
+                    $('form.signup p.school').show();
+                    $('form.signup .register').show();
+                }
+                else if(selected == 'organization'){
+                    $('form.signup p.fname').show();
+                    $('form.signup p.lname').show();
+                    $('form.signup p.email').show();
+                    $('form.signup p.password').show();
+                    $('form.signup p.confirmpassword').show();
+                    $('form.signup p.organization').show();
+                    $('form.signup p.school').hide();
+                    $('form.signup .register').show();
+                }
+                else{
+                    console.log('Account type change function error');
+                }
+            });
+
+            //Handles signin validation retreived from server 
+            var signin_errors = <%- signin_errors %>;
+            var signin_data = <%- signin_data %>;
+
+            if(signin_errors != null){
+                signin_errors.forEach(function(signin_error){
+                    $(`form.signin [name = ${signin_error.param}]`)
+                    .css({
+                        'border': '2px solid red'
+                    })
+                    .after(`${signin_error.msg}<br>`)
+                });
+                signin_data.forEach(function(data){
+                    $(`form.signin [name = ${data.name}]`)
+                    .val(data.value);
+                });
+            }
+
+            //Handles signup data retreived from server
+            var signup_errors = <%- signup_errors %>;
+            var signup_data = <%- signup_data %>;
+
+            if(signup_errors != null){
+                signup_errors.forEach(function(signup_error){
+                    $(`form.signup [name = ${signup_error.param}]`)
+                    .css({
+                        'border': '2px solid red'
+                    })
+                    .after(`${signup_error.msg}<br>`)
+                });
+                signup_data.forEach(function(data){
+                    $(`form.signup [name = ${data.name}]`)
+                    .val(data.value);
+                });
+            }
+                
+        });
+        </script>
+    </body>
+</html>
