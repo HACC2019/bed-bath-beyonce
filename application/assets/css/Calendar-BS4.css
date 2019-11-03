@@ -1,0 +1,23 @@
+.row-striped:nth-of-type(odd) {
+  background-color: #efefef;
+  border-left: 10px #cd3333 solid;
+}
+
+.row-striped:nth-of-type(even) {
+  background-color: #ffffff;
+  border-left: 15px #efefef solid;
+}
+
+.row-striped {
+  padding: 15px 0;
+  margin-top: 15px;
+}
+
+.date-green {
+  background-color: #cd3333;
+}
+
+.badge-grey {
+  background-color: #efefef;
+}
+
