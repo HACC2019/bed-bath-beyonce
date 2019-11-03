@@ -27,13 +27,6 @@ router.get('/landing-page', function(req, res){
     });
 });
 
-router.get('/project-page', function(req, res){
-
-    res.render('view-project-page', {
-        title: 'project-page'
-    });
-});
-
 router.get('/projects-with-sidebar', function(req, res){
 
     res.render('view-projects-with-sidebar', {

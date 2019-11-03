@@ -18,9 +18,12 @@
             <div class="about-me">
                 <p>HACC LOREM IPSUM STUFF</p>
             </div>
-        </div><select class="custom-select chosen" required="" style="color: #232323;"><option value="12">Karan Khandekar (001)</option><option value="13">Mrunali Khandekar (002)</option><option value="14">Aditya Bhosel (003)</option><option value="15" selected="">Abhishake P (004)</option><option value="17" selected="">Abhishake P (005)</option><option value="16" selected="">Abhishake P (007)</option><option value="16" selected="">Abhishake P (008)</option></select></section>
-    <section
-        class="portfolio-block photography"></section>
+        {{!-- </div><select class="custom-select chosen" required="" style="color: #232323;"><option value="12">Karan Khandekar (001)</option><option value="13">Mrunali Khandekar (002)</option><option value="14">Aditya Bhosel (003)</option><option value="15" selected="">Abhishake P (004)</option><option value="17" selected="">Abhishake P (005)</option><option value="16" selected="">Abhishake P (007)</option><option value="16" selected="">Abhishake P (008)</option></select></section> --}}
+        <form id="searchbar" method="post" action="/query">           
+            <input type="text" name="query" id="query" value="" placeholder="Search a project" />
+            <input type="submit" value="Search" class="fit" />      
+        </form>
+    <section class="portfolio-block photography"></section>
         <section class="portfolio-block skills">
             <div class="container">
                 <div class="heading">
