@@ -16,7 +16,7 @@
     <p class="confirmpassword">Confirm Password: <input type="password" name="confirmpassword"></p>
     <p class="organization">Organization: <input type="text" name="organization"></p>
     <p class="school">School: <input type="text" name="school"></p>
-    <input type="submit" value="Register!">
+    <input type="submit" value="Register!" class="register">
 </form>
 </div>
 
@@ -38,9 +38,24 @@
         if(page == 'signin'){
             $('#signup').hide();
         }
-        if(page == 'signup'){
+        else if(page == 'signup'){
             $('#signin').hide();
         }
+        else if(page == 'initial'){
+            $('#signup').hide();
+            $('form.signup p.fname').hide();
+            $('form.signup p.lname').hide();
+            $('form.signup p.email').hide();
+            $('form.signup p.password').hide();
+            $('form.signup p.confirmpassword').hide();
+            $('form.signup p.organization').hide();
+            $('form.signup p.school').hide();
+            $('form.signup .register').hide();
+        }
+        else{
+            console.log('Page tracking change error');
+        }
+        
 
         //Switches state of page with animation
         $('#noaccount').click(function(){
@@ -64,6 +79,7 @@
                 $('form.signup p.confirmpassword').show();
                 $('form.signup p.organization').hide();
                 $('form.signup p.school').show();
+                $('form.signup .register').show();
             }
             else if(selected == 'professional'){
                 $('form.signup p.fname').show();
@@ -73,6 +89,7 @@
                 $('form.signup p.confirmpassword').show();
                 $('form.signup p.organization').hide();
                 $('form.signup p.school').show();
+                $('form.signup .register').show();
             }
             else if(selected == 'organization'){
                 $('form.signup p.fname').show();
@@ -82,9 +99,10 @@
                 $('form.signup p.confirmpassword').show();
                 $('form.signup p.organization').show();
                 $('form.signup p.school').hide();
+                $('form.signup .register').show();
             }
             else{
-                console.log('Change function error');
+                console.log('Account type change function error');
             }
         });
 

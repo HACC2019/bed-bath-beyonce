@@ -9,7 +9,7 @@ var visited = false;
 router.get('/', function(req, res){
 
     if(!visited){
-        req.session.page = 'signin';
+        req.session.page = 'initial';
         req.session.signin_errors = null;
         req.session.signin_data = null;
         req.session.signup_errors = null;
@@ -104,7 +104,7 @@ router.post('/signin', function(req, res){
             User.findOne({email: req.body.email}, function(err, result) {
                 if (err) throw err;
                 req.session.user = result;
-                res.redirect('/');
+                res.redirect('/success');
             });
         }
     });
