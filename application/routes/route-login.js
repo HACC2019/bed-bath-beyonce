@@ -1,10 +1,12 @@
 const express = require('express');
 var router = express.Router();
 
+//Import user schema to read and write to the collection in database
 var User = require('../models/model-user');
 
 router.get('/', function(req, res){
 
+    //Display login page with the following variables to be used by handlebars or jquery
     res.render('view-login', {
         title: 'login',
         signin_errors: JSON.stringify(req.session.signin_errors),
@@ -18,6 +20,7 @@ router.get('/', function(req, res){
     req.session.signup_errors = null;
 });
 
+//Handles request for signing in
 router.post('/signin', function(req, res){
 
     //Save filled form data
@@ -93,6 +96,7 @@ router.post('/signin', function(req, res){
     });
 });
 
+//Handles request for signing up 
 router.post('/signup', function(req, res){
     //Save filled form data
     req.session.signin_data = [
