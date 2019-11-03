@@ -14,10 +14,10 @@ module.exports = function(){
     var connectWithRetry = function(){
         return mongoose.connect(path, options, function(err){
             if(err){
-                console.log(`Connection with Mongo failed, reconnecting in 5 secconds\n${err}`);
+                console.log(`MongoDB >> Failed, reconnecting in 5 seconds\n${err}`);
                 setTimeout(connectWithRetry, 5000);
             }
-            console.log('Connection with Mongo successful');
+            console.log('MongoDB >> Connected');
         });
     };
 

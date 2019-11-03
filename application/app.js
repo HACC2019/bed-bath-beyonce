@@ -8,12 +8,12 @@ const connection = require('./models/connection')
 //Routes
 const main = require('./routes/route-main');
 const login = require('./routes/route-login');
+const projectPage = require('./routes/route-project-page');
 
 //Start express server
 const app = express();
 
 //Connect with MongoDB
-const path ='mongodb+srv://cluster0-6qtxk.mongodb.net/test'
 connection();
 
 //Setting view engine to use handlebars
@@ -34,8 +34,9 @@ app.use(express.static('./assets'));
 //Set routes pathways
 app.use('/', main);
 app.use('/login', login);
+app.use('/project-page', projectPage);
 
 //Set server to listen to listen on defined port and log startup console
 const port = 6066;
 app.listen(port);
-console.log(`Now listening on port ${port}`);
+console.log(`DOE application listening on port ${port}`);

@@ -9,7 +9,7 @@ const userSchema = new Schema({
     lname: String,
     school: String,
     organization: String,
-    accountType: String
+    account_type: String
 }, {collection: 'user'});
 
 const user = mongoose.model('user', userSchema);

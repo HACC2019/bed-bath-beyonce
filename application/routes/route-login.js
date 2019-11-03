@@ -104,7 +104,7 @@ router.post('/signin', function(req, res){
             User.findOne({email: req.body.email}, function(err, result) {
                 if (err) throw err;
                 req.session.user = result;
-                res.redirect('/success');
+                res.redirect('/');
             });
         }
     });
@@ -200,12 +200,13 @@ router.post('/signup', function(req, res){
                 fname: req.body.firstname,
                 lname: req.body.lastname,
                 school: req.body.school,
-                organization: req.body.organization
+                organization: req.body.organization,
+                account_type: req.body.accounttype
             });
         
             user.save(function(err, result) {
                 if (err) throw err;
-                console.log(`${result.email} saved to database`);
+                console.log(`MongoDB >> ${result.email} saved to database`);
                 res.redirect('/success');
             });     
         }
