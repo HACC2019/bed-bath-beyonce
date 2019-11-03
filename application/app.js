@@ -6,7 +6,7 @@ const expressSession = require('express-session');
 const connection = require('./models/connection')
 
 //Routes
-const homepage = require('./routes/route-homepage');
+const main = require('./routes/route-main');
 const login = require('./routes/route-login');
 
 //Start express server
@@ -32,7 +32,7 @@ app.use(expressSession({
 app.use(express.static('./assets'));
 
 //Set routes pathways
-app.use('/', homepage);
+app.use('/', main);
 app.use('/login', login);
 
 //Set server to listen to listen on defined port and log startup console
