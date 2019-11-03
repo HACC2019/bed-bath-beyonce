@@ -41,4 +41,12 @@ router.get('/projects-with-sidebar', function(req, res){
     });
 });
 
+router.get('/Success', function (req, res) {
+
+    res.render('view-success', {
+        title: 'success'
+    });
+       
+});
+
 module.exports = router;
