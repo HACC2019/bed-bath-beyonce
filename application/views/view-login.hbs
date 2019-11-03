@@ -1,4 +1,6 @@
+<div id="signup">
 <h1>Register</h1>
+<a href="#" id="yesaccount">Already have an account?</a>
 <form class="signup" action="/login/signup" method="post">
     <p>First Name: <input type="text" name="fname"></p>
     <p>Last Name: <input type="text" name="lname"></p>
@@ -9,17 +11,39 @@
     <p>Organization: <input type="text" name="organization"></p>
     <input type="submit" value="Register!">
 </form>
+</div>
 
+<div id="signin">
 <h1>Login</h1>
+<a href="#" id="noaccount">Don't have an account?</a>
 <form class="signin" action="/login/signin" method="post">
     <p>Email: <input type="text" name="email"></p>
     <p>Password: <input type="password" name="password"></p>
     <input type="submit" value="Login!">
 </form>
-
+</div>
 
 <script>
     $(function(){
+
+        var state = {{{state}}};
+        if(state == 'signin'){
+            $('#signup').hide();
+        }
+        if(state == 'signup'){
+            $('#signin').hide();
+        }
+
+        $('#noaccount').click(function(){
+            $('#signup').show(500);
+            $('#signin').hide();
+        });
+
+        $('#yesaccount').click(function(){
+            $('#signin').show(500);
+            $('#signup').hide();
+        });
+
         //Handles signin validation retreived from server 
         var signin_errors = {{{signin_errors}}};
         var signin_data = {{{signin_data}}};
@@ -40,7 +64,7 @@
 
         //Handles signup data retreived from server
         var signup_errors = {{{signup_errors}}};
-        var signup_data = {{{signup_errors}}};
+        var signup_data = {{{signup_data}}};
 
         if(signup_errors != null){
             signup_errors.forEach(function(signup_error){
@@ -54,6 +78,6 @@
                 $(`form.signup [name = ${data.name}]`)
                 .val(data.value);
 			});
-        }
+        } 
     });
 </script>

@@ -1,23 +1,36 @@
 const express = require('express');
 var router = express.Router();
 
-//Import user schema to read and write to the collection in database
+//Import user schema to read and write to that collection in database
 var User = require('../models/model-user');
 
+var visited = false;
+
 router.get('/', function(req, res){
+
+    if(!visited){
+        req.session.state = 'signin'
+        req.session.signin_errors = null;
+        req.session.signin_data = null;
+        req.session.signup_errors = null;
+        req.session.signup_data = null; 
+    }
 
     //Display login page with the following variables to be used by handlebars or jquery
     res.render('view-login', {
         title: 'login',
+        state: JSON.stringify(req.session.state),
         signin_errors: JSON.stringify(req.session.signin_errors),
         signin_data: JSON.stringify(req.session.signin_data),
         signup_errors: JSON.stringify(req.session.signup_errors),
         signup_data: JSON.stringify(req.session.signup_data)
     });
 
-    //Clear errors after page has been rendered
+    //Clear errors and saved data after page has been rendered
     req.session.signin_errors = null;
+    req.session.signin_data = null;
     req.session.signup_errors = null;
+    req.session.signup_data = null;
 });
 
 //Handles request for signing in
@@ -82,11 +95,12 @@ router.post('/signin', function(req, res){
         if (req.session.signin_errors.length > 0) {
             console.log('signin contains errors:');
             console.log(req.session.signin_errors);
+            visited = true;
+            req.session.state = 'signin';
             res.redirect('/login');
         } 
         //If no errors, user session set and return to homepage
         else {
-            req.session.login_success = true;
             User.findOne({email: req.body.email}, function(err, result) {
                 if (err) throw err;
                 req.session.user = result;
@@ -99,7 +113,7 @@ router.post('/signin', function(req, res){
 //Handles request for signing up 
 router.post('/signup', function(req, res){
     //Save filled form data
-    req.session.signin_data = [
+    req.session.signup_data = [
         {
             name: 'fname',
             value: req.body.fname
@@ -164,7 +178,10 @@ router.post('/signup', function(req, res){
 
         //If errors exist, remain on signup page with errors shown
         if (req.session.signup_errors.length > 0) {
-            console.log('signup contains errors');
+            console.log('signup contains errors:');
+            console.log(req.session.signup_errors);
+            visited = true;
+            req.session.state = 'signup';
             res.redirect('/login');
         } 
         //If no errors, create a new user in the database and redirect to scuccess page
