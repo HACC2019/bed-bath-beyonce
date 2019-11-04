@@ -9,7 +9,8 @@ const userSchema = new Schema({
     lname: String,
     school: String,
     organization: String,
-    account_type: String
+    account_type: String,
+    projects: [{type: Schema.Types.ObjectId, ref: 'project'}]
 }, {collection: 'user'});
 
 const user = mongoose.model('user', userSchema);

@@ -31,11 +31,12 @@ router.get('/projects-with-sidebar', function(req, res){
 });
 
 router.get('/logout', function(req, res){
+
     req.session.user = null;
     res.redirect('/');
 });
 
-router.get('/success', function (req, res) {
+router.get('/success', function(req, res) {
 
     res.render('view-success', {
         title: 'success',
@@ -43,5 +44,6 @@ router.get('/success', function (req, res) {
     });
        
 });
+
 
 module.exports = router;

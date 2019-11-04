@@ -8,6 +8,7 @@ const connection = require('./models/connection')
 const main = require('./routes/route-main');
 const login = require('./routes/route-login');
 const project = require('./routes/route-project');
+const newsfeed = require('./routes/route-newsfeed');
 
 //Start express server
 const app = express();
@@ -34,6 +35,7 @@ app.use(express.static('./assets'));
 app.use('/', main);
 app.use('/login', login);
 app.use('/project', project);
+app.use('/newsfeed', newsfeed);
 
 //Set server to listen to listen on defined port and log startup console
 const port = 6066;
