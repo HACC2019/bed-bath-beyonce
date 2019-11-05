@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <% include partials/head %>
+    <% include partials/nav %>
+    <body>
+        <main>
+                <section class="portfolio-block block-intro">
+                        <div id="signup">
+                                <h1>Change your account settings here</h1>
+                                <form action="/account/change" method="post">
+                                <p class="fname">New First Name: <input type="text" name="fname" placeholder="<%= user.fname %>"></p>
+                                <p class="lname">New Last Name: <input type="text" name="lname" placeholder="<%= user.lname %>"></p>
+                                <p class="email">New Email: <input type="text" name="email" placeholder="<%= user.email %>"></p>
+                                <p class="password">New Password: <input type="password" name="password"></p>
+                                <p class="confirmpassword">Confirm New Password: <input type="password" name="confirmpassword"></p>
+                                <p class="organization">New Organization: <input type="text" name="organization" placeholder="<%= user.organization %>"></p>
+                                <p class="school">New School: <input type="text" name="school" placeholder="<%= user.school %>"></p>
+                                <input type="submit" value="Change!" class="register">
+                                </form>
+                                </div>
+                </section>
+        </main>
+    </body>
+</html>
