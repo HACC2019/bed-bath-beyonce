@@ -25,8 +25,8 @@ router.get('/:id', function(req, res){
             console.log('MongoDB >> Project page not found');
         }
         else{
-            res.render('view-project-page', {
-                title: 'project-page',
+            res.render('view-project', {
+                title: 'project',
                 project: result,
                 user: req.session.user
             });
