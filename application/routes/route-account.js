@@ -11,4 +11,12 @@ router.get('/', function(req, res){
     });
 });
 
+router.post('/change', function(req, res){
+
+    User.findOne({_id: req.session.user._id}, function(err, result){
+        if(err) throw err;
+
+    });
+});
+
 module.exports = router;
