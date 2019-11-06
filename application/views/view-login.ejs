@@ -44,11 +44,59 @@
         <script>
         $(function(){
 
+            //Handles signin validation retreived from server 
+
+            <% if(signin_errors == null){ %>
+            var signin_errors = null;
+            var signin_data = null;
+            <% }else{ %>
+            var signin_errors = <%- signin_errors %>;
+            var signin_data = <%- signin_data %>;
+            <% } %>
+
+            if(signin_errors != null){
+                signin_errors.forEach(function(signin_error){
+                    $(`form.signin [name = ${signin_error.param}]`)
+                    .css({
+                        'border': '2px solid red'
+                    })
+                    .after(`${signin_error.msg}<br>`)
+                });
+                signin_data.forEach(function(data){
+                    $(`form.signin [name = ${data.name}]`)
+                    .val(data.value);
+                });
+            }
+
+            //Handles signup data retreived from server
+            
+            <% if(signup_errors == null){ %>
+            var signup_errors = null;
+            var signup_data = null;
+            <% }else{ %>
+            var signup_errors = <%- signup_errors %>;
+            var signup_data = <%- signup_data %>;
+            <% } %>
+
+            if(signup_errors != null){
+                signup_errors.forEach(function(signup_error){
+                    $(`form.signup [name = ${signup_error.param}]`)
+                    .css({
+                        'border': '2px solid red'
+                    })
+                    .after(`${signup_error.msg}<br>`)
+                });
+                signup_data.forEach(function(data){
+                    $(`form.signup [name = ${data.name}]`)
+                    .val(data.value);
+                });
+            }
+
             //Tracks whether page is on signin or signup
             if(sessionStorage.page == null){
                 $('#signup').hide();
                 $('#signin').show();
-                sessionStorage.page == 'signin'
+                sessionStorage.page = 'signin';
 
             }
             else if(sessionStorage.page == 'signin'){
@@ -59,6 +107,8 @@
                 $('#signin').hide();
                 $('#signup').show();
             }
+
+            console.log(sessionStorage.page);
 
             //Switches state of page with animation
             $('#noaccount').click(function(){
@@ -116,56 +166,7 @@
                     $('form.signup p.school').hide();
                     $('form.signup .register').show();
                 }
-            });
-
-            //Handles signin validation retreived from server 
-
-            <% if(signin_errors == null){ %>
-            var signin_errors = null;
-            var signin_data = null;
-            <% }else{ %>
-            var signin_errors = <%- signin_errors %>;
-            var signin_data = <%- signin_data %>;
-            <% } %>
-
-            if(signin_errors != null){
-                signin_errors.forEach(function(signin_error){
-                    $(`form.signin [name = ${signin_error.param}]`)
-                    .css({
-                        'border': '2px solid red'
-                    })
-                    .after(`${signin_error.msg}<br>`)
-                });
-                signin_data.forEach(function(data){
-                    $(`form.signin [name = ${data.name}]`)
-                    .val(data.value);
-                });
-            }
-
-            //Handles signup data retreived from server
-            
-            <% if(signup_errors == null){ %>
-            var signup_errors = null;
-            var signup_data = null;
-            <% }else{ %>
-            var signup_errors = <%- signup_errors %>;
-            var signup_data = <%- signup_data %>;
-            <% } %>
-
-            if(signup_errors != null){
-                signup_errors.forEach(function(signup_error){
-                    $(`form.signup [name = ${signup_error.param}]`)
-                    .css({
-                        'border': '2px solid red'
-                    })
-                    .after(`${signup_error.msg}<br>`)
-                });
-                signup_data.forEach(function(data){
-                    $(`form.signup [name = ${data.name}]`)
-                    .val(data.value);
-                });
-            }
-                
+            }); 
         });
         </script>
     </body>
