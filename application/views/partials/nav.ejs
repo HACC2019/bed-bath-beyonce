@@ -9,16 +9,16 @@
                 <li class="nav-item" role="presentation"><a class="nav-link" href="/login">Log in</a></li>
                 <% }else{ %>
                 <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">
-                    <%= user.fname%>
-                    <%= user.lname%><span class="caret"></span></button>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                    <ul>
-                        <li><a href="/account">Account</a></li>
-                        <li><a href="/logout">Log Out</a></li>
+                    <button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">
+                        <%= user.fname%>
+                        <%= user.lname%><span class="caret"></span></button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                        <ul>
+                            <li><a href="/account">Account</a></li>
+                            <li><a href="/logout">Log Out</a></li>
+                        </ul>
                     </ul>
-                    </ul>
-                    </div>
+                </div>
         </div>
         </li>
     </div>
