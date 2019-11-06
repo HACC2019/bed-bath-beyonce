@@ -6,7 +6,7 @@
                 <li class="nav-item" role="presentation"><a class="nav-link active" href="/homepage">Home</a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link" href="/projects-with-sidebar">Projects</a></li>
                 <% if(user == null){ %>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="/login">Log in</a></li>
+                <li class="nav-item login" role="presentation"><a class="nav-link" href="#"">Log in</a></li>
                 <% }else{ %>
                 <div class="dropdown">
                     <button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">
@@ -28,7 +28,14 @@
     </div>
 </nav>
 <script>
-    $(document).ready(function () {
+    $(function(){
+        <% if(user != null){ %>
         $(".dropdown-toggle").dropdown();
+        <% } %>
+
+        $('.login').click(function(){
+            sessionStorage.page = 'signin';
+            window.location = '/login';
+        });
     });
 </script>
