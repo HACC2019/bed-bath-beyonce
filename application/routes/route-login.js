@@ -4,23 +4,11 @@ var router = express.Router();
 //Import user schema to read and write to that collection in database
 var User = require('../models/model-user');
 
-var visited = false;
-
 router.get('/', function(req, res){
-
-    if(!visited){
-        req.session.page = 'initial';
-        req.session.signin_errors = null;
-        req.session.signin_data = null;
-        req.session.signup_errors = null;
-        req.session.signup_data = null;
-        req.sessions
-    }
 
     //Display login page with the following variables to be used by ejs or jquery
     res.render('view-login', {
         title: 'login',
-        page: JSON.stringify(req.session.page),
         signin_errors: JSON.stringify(req.session.signin_errors),
         signin_data: JSON.stringify(req.session.signin_data),
         signup_errors: JSON.stringify(req.session.signup_errors),
@@ -98,8 +86,6 @@ router.post('/signin', function(req, res){
         if (req.session.signin_errors.length > 0) {
             console.log('signin contains errors:');
             console.log(req.session.signin_errors);
-            visited = true;
-            req.session.page = 'signin';
             res.redirect('/login');
         } 
         //If no errors, user session set and return to homepage
@@ -191,8 +177,6 @@ router.post('/signup', function(req, res){
         if (req.session.signup_errors.length > 0) {
             console.log('signup contains errors:');
             console.log(req.session.signup_errors);
-            visited = true;
-            req.session.page = 'signup';
             res.redirect('/login');
         } 
         //If no errors, create a new user in the database and redirect to scuccess page

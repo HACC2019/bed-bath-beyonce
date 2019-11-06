@@ -44,16 +44,36 @@
         <script>
         $(function(){
 
-            //Tracks the login state of page: either signin page or signup page
-            var page = <%- page %>;
-            if(page == 'signin'){
+            //Tracks whether page is on signin or signup
+            if(sessionStorage.page == null){
                 $('#signup').hide();
+                $('#signin').show();
+                sessionStorage.page == 'signin'
+
             }
-            else if(page == 'signup'){
+            else if(sessionStorage.page == 'signin'){
+                $('#signup').hide();
+                $('#signin').show();
+            }
+            else if(sessionStorage.page == 'signup'){
                 $('#signin').hide();
+                $('#signup').show();
             }
-            else if(page == 'initial'){
+
+            //Switches state of page with animation
+            $('#noaccount').click(function(){
+                $('#signup').show(500);
+                $('#signin').hide();
+                sessionStorage.page = 'signup';
+            });
+
+            $('#yesaccount').click(function(){
+                $('#signin').show(500);
                 $('#signup').hide();
+                sessionStorage.page = 'signin';
+            });
+
+            if($('[name = accounttype] option:selected').val() == "null"){
                 $('form.signup p.fname').hide();
                 $('form.signup p.lname').hide();
                 $('form.signup p.email').hide();
@@ -63,22 +83,6 @@
                 $('form.signup p.school').hide();
                 $('form.signup .register').hide();
             }
-            else{
-                console.log('Page tracking change error');
-            }
-            
-
-            //Switches state of page with animation
-            $('#noaccount').click(function(){
-                $('#signup').show(500);
-                $('#signin').hide();
-            });
-
-            $('#yesaccount').click(function(){
-                $('#signin').show(500);
-                $('#signup').hide();
-            });
-
             
             $('[name = accounttype]').change(function(){
                 var selected = $('[name = accounttype] option:selected').val();
@@ -112,14 +116,17 @@
                     $('form.signup p.school').hide();
                     $('form.signup .register').show();
                 }
-                else{
-                    console.log('Account type change function error');
-                }
             });
 
             //Handles signin validation retreived from server 
+
+            <% if(signin_errors == null){ %>
+            var signin_errors = null;
+            var signin_data = null;
+            <% }else{ %>
             var signin_errors = <%- signin_errors %>;
             var signin_data = <%- signin_data %>;
+            <% } %>
 
             if(signin_errors != null){
                 signin_errors.forEach(function(signin_error){
@@ -136,8 +143,14 @@
             }
 
             //Handles signup data retreived from server
+            
+            <% if(signup_errors == null){ %>
+            var signup_errors = null;
+            var signup_data = null;
+            <% }else{ %>
             var signup_errors = <%- signup_errors %>;
             var signup_data = <%- signup_data %>;
+            <% } %>
 
             if(signup_errors != null){
                 signup_errors.forEach(function(signup_error){
