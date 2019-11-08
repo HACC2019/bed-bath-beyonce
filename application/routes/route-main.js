@@ -41,8 +41,15 @@ router.get('/success', function(req, res) {
     res.render('view-success', {
         title: 'success',
         user: req.session.user
+    });      
+});
+
+router.get('/add-project', function (req, res) {
+
+    res.render('view-add-project', {
+        title: 'add project',
+        user: req.session.user
     });
-       
 });
 
 

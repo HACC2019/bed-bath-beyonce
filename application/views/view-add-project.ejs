@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include partials/head %>
+<% include partials/nav %>
+<body>
+    <main>
+        <section class="portfolio-block block-intro">
+            <div id="signup">
+                <h1>Create a Project</h1>
+                <form class="projectsignup" action="/addproj/register" method="post">
+                    <form action='/api/images' method="post" enctype="multipart/form-data">
+                        <p class="photo">Upload photo:</p><input type='file' name='image' />
+                    </form>
+                    <p class="title">Project Title: <input type="text" name="title"></p>
+                    <p class="description">Description: <input type="text" name="description"></p>
+                    <p class="school">School: <input type="school" name="school"></p>
+                    <p class="location">Location: <input type="location" name="location"></p>
+                    <p class="sdate">Date Start: <input type="text" name="sdate"></p>
+                    <p class="edate">Date End: <input type="password" name="edate"></p>              
+                    <input type="submit" value="Publish!" class="publish">
+                </form>
+            </div>
+        </section>
+    </main>
+    <% include partials/footer %>
+</body>
+
+</html>

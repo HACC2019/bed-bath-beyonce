@@ -40,8 +40,8 @@ router.post('/signin', function(req, res){
     ];
 
     //Check fields from form so that they pass the specified validation
-    req.check('email', 'Email is required').notEmpty();
-    req.check('email', 'Invalid email address').isEmail();
+    req.check('email', 'Email is required').notEmpty().withMessage('Email is required');
+    req.check('email', 'Email field is required').isEmail().withMessage('Invalid email address');
     req.check('email', 'Email not found').custom(function(value) {
         return new Promise(function(resolve, reject) {
             User.findOne({email: value}, function(err, result) {
@@ -54,7 +54,7 @@ router.post('/signin', function(req, res){
             });
         });
     });
-    req.check('password', 'Password is required').notEmpty();
+    req.check('password').notEmpty().withMessage();
     req.check('password', 'Password does not match email').custom(function(value) {
         return new Promise(function(resolve, reject) {
             User.findOne({email: req.body.email}, function(err, result){
