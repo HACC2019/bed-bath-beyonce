@@ -44,13 +44,5 @@ router.get('/success', function(req, res) {
     });      
 });
 
-router.get('/add-project', function (req, res) {
-
-    res.render('view-add-project', {
-        title: 'add project',
-        user: req.session.user
-    });
-});
-
 
 module.exports = router;

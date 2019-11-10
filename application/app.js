@@ -9,6 +9,7 @@ const main = require('./routes/route-main');
 const login = require('./routes/route-login');
 const account = require('./routes/route-account');
 const project = require('./routes/route-project');
+const addProject = require('./routes/route-add-project');
 
 //Start express server
 const app = express();
@@ -36,6 +37,7 @@ app.use('/', main);
 app.use('/login', login);
 app.use('/account', account);
 app.use('/project', project);
+app.use('/add-project', addProject);
 
 //Set server to listen to listen on defined port and log startup console
 const port = 6066;

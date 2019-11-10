@@ -9,7 +9,8 @@ router.get('/', function(req, res){
         title: 'project',
         project: {
             name: '<NAME>',
-            date: '<DATE>',
+            start_date: '<DATE>',
+            end_date: '<DATE2>',
             address: '<ADDRESS>',
             description: '<DESCRIPTION>'
         },
