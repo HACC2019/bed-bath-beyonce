@@ -1,55 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-    <% include partials/head %>
-    <% include partials/nav %>
-    <body>
-        <main class="page project-page">
-            <section class="portfolio-block project">
-                <div class="container">
-                    <div class="heading">
-                        <!-- <h2>Route to a specific program</h2> -->
-                        <h2><%= project.name %></h2>
+<% include partials/head %>
+<% include partials/nav %>
+
+<body>
+    <main class="page project-page">
+        <section class="portfolio-block project">
+            <div class="container">
+                <div class="heading">
+                    <!-- <h2>Route to a specific program</h2> -->
+                    <h2>
+                        <%= project.name %>
+                    </h2>
+                </div>
+                <div class="image" style="background-image:url(&quot;/uploads/<%= project.photo%>&quot;); background-size:contain; background-position:center;"></div>
+                <div class="row">
+                    <div class="col-12 col-md-6 offset-md-1 info">
+                        <h3>Description</h3>
+                        <p>
+                            <%= project.description %>
+                        </p>
+                                            <h3>Comments</h3>
+                                            <div class="row">
+                                                <!-- comments section -->
+                                                <div class=" comments-section">
+                                                    <!-- comment form -->
+                                                    <form class="clearfix" method="post" id="comment_form">
+                                                        <h4>Post a comment:</h4>
+                                                        <textarea name="comment_text" id="comment_text" class="form-control" cols="30" rows="3"></textarea>
+                                                        <button class="btn btn-primary btn-sm pull-right" id="submit_comment">Submit comment</button>
+                                                    </form>
+                                        
+                                                    <!-- Display total number of comments on this post  -->
+                                                    <h2><span id="comments_count">0</span> Comment(s)</h2>
+                                                    <hr>
+                                                </div>
+                                                <!-- // comments section -->
+                                            </div>
+                                        
                     </div>
-                    <div class="image" style="background-image:url(&quot;/uploads/<%= project.photo%>&quot;); background-size:contain; background-position:center;"></div>
-                    <div class="row">
-                        <div class="col-12 col-md-6 offset-md-1 info">
-                            <h3>Description</h3>
-                            <p><%= project.description %></p>
-                        </div> 
-                        <div class="col-12 col-md-3 offset-md-1 meta">
-                            <div class="tags">
-                                <span class="meta-heading">Tags</span>
-                                    <a href="#">Resource</a>
-                                    <a href="#">Project</a>
-                                <span class="meta-heading">Date</span>
-                                    <span><%= project.start_date %> -</span>
-                                    <span><%= project.end_date %></span>
-                                <span class="meta-heading">Address</span>
-                                    <span><%= project.location %></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="more-projects">
-                        <h3 class="text-center">More Programs</h3>
-                        <div class="row gallery">
-                            <div class="col-md-4 col-lg-3">
-                                <div class="item"><a href="#"><img class="img-fluid scale-on-hover" src="/img/nature/image2.jpg"></a></div>
-                            </div>
-                            <div class="col-md-4 col-lg-3">
-                                <div class="item"><a href="#"><img class="img-fluid scale-on-hover" src="/img/nature/image3.jpg"></a></div>
-                            </div>
-                            <div class="col-md-4 col-lg-3">
-                                <div class="item"><a href="#"><img class="img-fluid scale-on-hover" src="/img/tech/image4.jpg"></a></div>
-                            </div>
-                            <div class="col-md-4 col-lg-3">
-                                <div class="item"><a href="#"><img class="img-fluid scale-on-hover" src="/img/nature/image5.jpg"></a></div>
-                            </div>
+                    <div class="col-12 col-md-3 offset-md-1 meta">
+                        <div class="tags">
+                            <span class="meta-heading">Tags</span>
+                            <a href="#">Resource</a>
+                            <a href="#">Project</a>
+                            <span class="meta-heading">Date</span>
+                            <span>
+                                <%= project.start_date %> -</span>
+                            <span>
+                                <%= project.end_date %></span>
+                            <span class="meta-heading">Address</span>
+                            <span>
+                                <%= project.location %></span>
                         </div>
                     </div>
                 </div>
-            </section>
-            
-        </main>
-        <% include partials/footer %>
-    </body>
+                <br>
+                <br>
+                <div class="container">
+                    <h3 class="text-center">Pledge Support</h3>
+
+                    <form>
+                        <fieldset>
+                            <div class="row">
+                                Enter a donation amount:
+                                <select id="SelectAmount">
+                                    <option>$5</option>
+                                    <option>$10</option>
+                                    <option>$15</option>
+                                    <option>$20</option>
+                                </select>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <p>
+                                    <label>Other Options:</label>
+                                    <textarea id="myTextArea" rows="3" cols="80">Your text here</textarea>
+                                </p>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <br>
+                <br>
+                <div class="more-projects">
+                    <h3 class="text-center">More Programs</h3>
+                    <div class="row gallery">
+                        <div class="col-md-4 col-lg-3">
+                            <div class="item"><a href="#"><img class="img-fluid scale-on-hover" src="/img/nature/image2.jpg"></a></div>
+                        </div>
+                        <div class="col-md-4 col-lg-3">
+                            <div class="item"><a href="#"><img class="img-fluid scale-on-hover" src="/img/nature/image3.jpg"></a></div>
+                        </div>
+                        <div class="col-md-4 col-lg-3">
+                            <div class="item"><a href="#"><img class="img-fluid scale-on-hover" src="/img/tech/image4.jpg"></a></div>
+                        </div>
+                        <div class="col-md-4 col-lg-3">
+                            <div class="item"><a href="#"><img class="img-fluid scale-on-hover" src="/img/nature/image5.jpg"></a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <% include partials/footer %>
+    <script>
+        function Function() {
+            document.getElementById("SelectAmount").selectedIndex.focus();
+        }
+    </script>
+</body>
+
 </html>

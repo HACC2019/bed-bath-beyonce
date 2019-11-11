@@ -29,9 +29,14 @@
                                             <div class="col-sm">
                                                 <div class="col-md-12 mx-auto"><a href="/project/<%= project._id%>"><img class="img-fluid image scale-on-hover"
                                                         src="/uploads/<%= project.photo%>"></a>
-                                                <div class="span3">
+                                                <div class="span3"><
                                                     <h3 class="card-title"><%= project.title %></h3>
                                                     <h5 class="card-text"><%= project.description %></h5>
+                                                    <a class="btn btn-primary" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-1" href="#collapse-1" role="button">Read More</a>
+                                                    <div class="collapse" id="collapse-1">
+                                                            <p>Collapse content.</p>
+                                                        </div>
+                                                    <!-- <button class="btn btn-outline-primary btn-sm" type="button">Read More</button> -->
                                                 </div>
                                                 </div>  
                                             </div>
