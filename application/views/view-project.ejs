@@ -13,8 +13,7 @@
                         <%= project.name %>
                     </h2>
                 </div>
-                <div class="image"
-                    style="background-image:url(&quot;/uploads/<%= project.photo%>&quot;); background-size:contain; background-position:center;">
+                <div class="image" style="background-image:url(&quot;/uploads/<%= project.photo%>&quot;); background-size:contain; background-position:center;">
                 </div>
                 <div class="row">
                     <div class="col-12 col-md-6 offset-md-1 info">
@@ -29,17 +28,27 @@
                                 <!-- comment form -->
                                 <form class="clearfix" method="post" id="comment_form" style="min-width: 180%;">
                                     <h4>Post a comment:</h4>
-                                    <textarea name="comment_text" id="comment_text" class="form-control" cols="30"
-                                        rows="3"></textarea><br>
+                                    <textarea name="comment_text" id="comment_text" class="form-control" cols="30" rows="3"></textarea><br>
                                     <button class="btn btn-primary btn-sm pull-right" id="submit_comment">Submit
                                         comment</button>
                                 </form>
-
-                                <!-- Display total number of comments on this post  -->
                                 <br>
                                 <h3><span id="comments_count">0</span> Comment(s)</h3>
                             </div>
-                            <!-- // comments section -->
+                            <hr>
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="topright">
+                                        <h6 class="card-text">10/10/2010</h6>
+                                    </div>
+                                    <strong class="card-title">Bryant Sanchez</strong>
+                                    <p class="card-text">Something about this amazing project.</p>
+                                    <br>
+                                    <div class="bottomright">
+                                        <button type="button">Reply</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                     </div>
@@ -84,8 +93,7 @@
                         <div class="form-group">
                             <p>
                                 <label for="myTextArea">Other Options:</label>
-                                <textarea id="myTextArea" rows="3"
-                                    class="form-control">Please specify your donation here.</textarea>
+                                <textarea id="myTextArea" rows="3" class="form-control">Please specify your donation here.</textarea>
                             </p>
                             <button class="btn btn-primary btn-sm pull-right" id="submit_donation">Submit
                                 Donation</button>
@@ -99,20 +107,16 @@
                 <h3 class="text-center">More Programs</h3>
                 <div class="row gallery">
                     <div class="col-md-4 col-lg-3">
-                        <div class="item"><a href="#"><img class="img-fluid scale-on-hover"
-                                    src="/img/nature/image2.jpg"></a></div>
+                        <div class="item"><a href="#"><img class="img-fluid scale-on-hover" src="/img/nature/image2.jpg"></a></div>
                     </div>
                     <div class="col-md-4 col-lg-3">
-                        <div class="item"><a href="#"><img class="img-fluid scale-on-hover"
-                                    src="/img/nature/image3.jpg"></a></div>
+                        <div class="item"><a href="#"><img class="img-fluid scale-on-hover" src="/img/nature/image3.jpg"></a></div>
                     </div>
                     <div class="col-md-4 col-lg-3">
-                        <div class="item"><a href="#"><img class="img-fluid scale-on-hover"
-                                    src="/img/tech/image4.jpg"></a></div>
+                        <div class="item"><a href="#"><img class="img-fluid scale-on-hover" src="/img/tech/image4.jpg"></a></div>
                     </div>
                     <div class="col-md-4 col-lg-3">
-                        <div class="item"><a href="#"><img class="img-fluid scale-on-hover"
-                                    src="/img/nature/image5.jpg"></a></div>
+                        <div class="item"><a href="#"><img class="img-fluid scale-on-hover" src="/img/nature/image5.jpg"></a></div>
                     </div>
                 </div>
             </div>
@@ -125,6 +129,21 @@
             document.getElementById("SelectAmount").selectedIndex.focus();
         }
     </script>
+    <style>
+        .topright {
+            position: absolute;
+            top: 8px;
+            right: 16px;
+            font-size: 18px;
+        }
+
+        .bottomright {
+            position: absolute;
+            bottom: 8px;
+            right: 16px;
+            font-size: 18px;
+        }
+    </style>
 </body>
 
 </html>
