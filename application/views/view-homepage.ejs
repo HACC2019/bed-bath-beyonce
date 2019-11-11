@@ -24,33 +24,19 @@
                             </div>
                             <div class=container>
                                 <div class="row">
-                                    <div class="col-sm">
-                                        <div class="col-md-12 mx-auto"><a href="#"><img class="img-fluid image scale-on-hover"
-                                                    src="/img/nature/image1.jpg"></a>
+                                    <% if(projects.length > 0){ 
+                                        projects.forEach(function(project){ %>
+                                            <div class="col-sm">
+                                            <div class="col-md-12 mx-auto"><a href="#"><img class="img-fluid image scale-on-hover"
+                                                    src="/uploads/<%= project.photo%>"></a>
                                             <div class="span3">
-                                                <h3 class="card-title">{{EJS PROGRAM NAME}}</h3>
-                                                <h5 class="card-text">{{EJS STUFF PROGRAM INFO}}</h5>
+                                                <h3 class="card-title"><%= project.title %></h3>
+                                                <h5 class="card-text"><%= project.description %></h5>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm">
-                                        <div class="col-md-12 mx-auto"><a href="#"><img class="img-fluid image scale-on-hover"
-                                                    src="/img/nature/image1.jpg"></a>
-                                            <div class="span3">
-                                                <h3 class="card-title">{{EJS PROGRAM NAME}}</h3>
-                                                <h5 class="card-text">{{EJS STUFF PROGRAM INFO}}</h5>
+                                            </div>  
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm">
-                                        <div class="col-md-12 mx-auto"><a href="#"><img class="img-fluid image scale-on-hover"
-                                                    src="/img/nature/image1.jpg"></a>
-                                            <div class="span3">
-                                                <h3 class="card-title">{{EJS PROGRAM NAME}}</h3>
-                                                <h5 class="card-text">{{EJS STUFF PROGRAM INFO}}</h5>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        <% });
+                                    } %>
                                 </div>
                             </div>
                         </div>

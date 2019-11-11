@@ -6,14 +6,6 @@ router.get('/', function(req, res){
     res.redirect('/homepage');
 });
 
-router.get('/homepage', function(req, res){
-
-    res.render('view-homepage', {
-        title: 'homepage',
-        user: req.session.user
-    });
-});
-
 router.get('/contact', function(req, res){
 
     res.render('view-contact', {

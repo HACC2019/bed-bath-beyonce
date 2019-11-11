@@ -7,11 +7,12 @@ const projectSchema = new Schema({
     comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'comment'}],
     title: String,
     description: String,
-    start_date: Date,
-    end_date: Date,
+    start_date: String,
+    end_date: String,
     location: String,
     school: String,
-    photo: String
+    photo: String,
+    date_posted: {type: Date, default: Date.now} 
 }, {collection: 'project'});
 
 const project = mongoose.model('project', projectSchema);

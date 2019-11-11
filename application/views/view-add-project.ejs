@@ -5,9 +5,9 @@
 <body>
     <main>
         <section class="portfolio-block block-intro">
-            <div id="signup">
+            <div id="project">
                 <h1>Create a Project</h1>
-                <form class="projectsignup" action="/add-project/submit" method="post" enctype="multipart/form-data">
+                <form action="/add-project/submit" method="post" enctype="multipart/form-data">
                     
                     <p class="photo">Upload photo:</p>
                     <p><input type="file" name="photo" accept="image/*"/></p>
@@ -25,6 +25,26 @@
         </section>
     </main>
     <% include partials/footer %>
+
+    <script>
+    $(function(){
+        <% if(project_errors == null){ %>
+        var project_errors = null;
+        <% }else{ %>
+        var project_errors = <%- project_errors %>;
+        <% } %>
+
+        if(project_errors != null){
+            project_errors.forEach(function(project_error){
+                $(`[name = ${project_error.param}]`)
+                .css({
+                    'border': '2px solid red'
+                })
+                .after(`${project_error.msg}<br>`)
+            });
+        }
+    });
+    </script>
 </body>
 
 </html>
