@@ -14,14 +14,6 @@ router.get('/contact', function(req, res){
     });
 });
 
-router.get('/projects-with-sidebar', function(req, res){
-
-    res.render('view-projects-with-sidebar', {
-        title: 'projects-with-sidbar',
-        user: req.session.user
-    });
-});
-
 router.get('/logout', function(req, res){
 
     req.session.user = null;

@@ -8,8 +8,8 @@ router.get('/', function(req, res){
     .sort({date_posted: -1})
     .exec(function(err, result){
         if(err) throw err;
-        res.render('view-homepage', {
-            title: 'homepage',
+        res.render('view-project-list', {
+            title: 'project-list',
             user: req.session.user,
             projects: result
         });

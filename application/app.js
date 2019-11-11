@@ -10,6 +10,7 @@ const homepage = require('./routes/route-homepage');
 const login = require('./routes/route-login');
 const account = require('./routes/route-account');
 const project = require('./routes/route-project');
+const projectList = require('./routes/route-project-list');
 const addProject = require('./routes/route-add-project');
 
 //Start express server
@@ -39,6 +40,7 @@ app.use('/homepage', homepage);
 app.use('/login', login);
 app.use('/account', account);
 app.use('/project', project);
+app.use('/project-list', projectList);
 app.use('/add-project', addProject);
 
 //Set server to listen to listen on defined port and log startup console
