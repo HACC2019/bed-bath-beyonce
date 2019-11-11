@@ -7,8 +7,14 @@ router.get('/', function(req, res){
 
     res.render('view-account', {
         title: 'account',
-        user: req.session.user
+        user: req.session.user,
+        account_errors: req.session.account_errors,
+        account_success: req.session.account_success,
     });
+
+    req.session.account_errors = null;
+    req.session.account_success = null;
+    req.session.save();
 });
 
 router.post('/change', function(req, res){
@@ -28,9 +34,11 @@ router.post('/change', function(req, res){
             result.school = req.body.school;
         }
         if (req.body.password != '') {
-            result.password = req.body.password;
+            req.check('password', 'Password must be at least 8 characters').isLength({ min: 8 });
+            req.check('password', 'Password must be less than 73 characters').isLength({ max: 72 });            
         }
-
+        req.check('confirmpassword', 'Passwords do not match').equals(req.body.password);
+        
         if (req.body.email != '') {
             result.email = req.body.email;
             req.check('email', 'Invalid email address').isEmail();

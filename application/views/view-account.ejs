@@ -8,7 +8,7 @@
                         <div id="signup">
                                 <h1>Change your account settings here.</h1>
                                 <form action="/account/change" method="post">
-                                <p class="fname">New First Name: <input type="text" name="fname" placeholder="<%= user.fname %>"></p>
+                                <p class="fname">New First Name: <input type="text" name="fname" id="fname" placeholder="<%= user.fname %>"></p>
                                 <p class="lname">New Last Name: <input type="text" name="lname" placeholder="<%= user.lname %>"></p>
                                 <p class="email">New Email: <input type="text" name="email" placeholder="<%= user.email %>"></p>
                                 <p class="password">New Password: <input type="password" name="password"></p>
@@ -22,4 +22,24 @@
         </main>
         <% include partials/footer %>
     </body>
+    <script>
+        $(function () {
+                <% if (account_errors == null) { %>
+                var account_errors = null;
+                <% } else { %>
+                var account_errors = <% - account_errors %>;
+                console.log(account_errors);
+                <% } %>
+                
+                if (account_errors != null) {
+                    account_errors.forEach(function (account_error) {
+                        $(`[name = ${account_error.param}]`)
+                            .css({
+                                'border': '2px solid red'
+                            })
+                            .after(`${account_error.msg}<br>`)
+                    });
+                }
+            });
+    </script>
 </html>
