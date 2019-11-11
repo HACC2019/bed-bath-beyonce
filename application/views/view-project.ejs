@@ -13,7 +13,9 @@
                         <%= project.name %>
                     </h2>
                 </div>
-                <div class="image" style="background-image:url(&quot;/uploads/<%= project.photo%>&quot;); background-size:contain; background-position:center;"></div>
+                <div class="image"
+                    style="background-image:url(&quot;/uploads/<%= project.photo%>&quot;); background-size:contain; background-position:center;">
+                </div>
                 <div class="row">
                     <div class="col-12 col-md-6 offset-md-1 info">
                         <h3>Description</h3>
@@ -25,16 +27,17 @@
                             <!-- comments section -->
                             <div class="comments-section">
                                 <!-- comment form -->
-                                <form class="clearfix" method="post" id="comment_form" style="min-width: 200%;">
+                                <form class="clearfix" method="post" id="comment_form" style="min-width: 250%;">
                                     <h4>Post a comment:</h4>
-                                    <textarea name="comment_text" id="comment_text" class="form-control" cols="30" rows="3"></textarea>
+                                    <textarea name="comment_text" id="comment_text" class="form-control" cols="30"
+                                        rows="3"></textarea>
                                     <button class="btn btn-primary btn-sm pull-right" id="submit_comment">Submit
                                         comment</button>
                                 </form>
 
                                 <!-- Display total number of comments on this post  -->
-                                <h2><span id="comments_count">0</span> Comment(s)</h2>
-                                <hr>
+                                <br>
+                                <h3><span id="comments_count">0</span> Comment(s)</h3>
                             </div>
                             <!-- // comments section -->
                         </div>
@@ -56,51 +59,59 @@
                         </div>
                     </div>
                 </div>
-                <br>
-                <br>
+            </div>
+            <section class="portfolio-block website gradient">
                 <div class="container">
-                    <h3 class="text-center">Pledge Support</h3>
+                    <div class="heading">
+                        <h2>Pledge Support</h2>
+                    </div>
 
-                    <form>
-                        <fieldset>
-                            <div class="row">
-                                Enter a donation amount:
-                                <select id="SelectAmount">
-                                    <option>$5</option>
-                                    <option>$10</option>
-                                    <option>$15</option>
-                                    <option>$20</option>
-                                </select>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <p>
-                                    <label>Other Options:</label>
-                                    <textarea id="myTextArea" rows="3" cols="80">Your text here</textarea>
-                                </p>
-                            </div>
-                        </fieldset>
+                    <form style="min-width: 100%;">
+                        <div class="form-group">
+                            <label for="selectAmount">Enter Donation Amount:</label>
+                            <select class="form-control" id="selectAmount">
+                                <option>$5</option>
+                                <option>$10</option>
+                                <option>$15</option>
+                                <option>$20</option>
+                            </select>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <p>
+                                <label for="myTextArea">Other Options:</label>
+                                <textarea id="myTextArea" rows="3"
+                                    class="form-control">Please specify your donation here.</textarea>
+                            </p>
+                            <button class="btn btn-primary btn-sm pull-right" id="submit_donation">Submit
+                                Donation</button>
+                        </div>
                     </form>
                 </div>
-                <br>
-                <br>
-                <div class="more-projects">
-                    <h3 class="text-center">More Programs</h3>
-                    <div class="row gallery">
-                        <div class="col-md-4 col-lg-3">
-                            <div class="item"><a href="#"><img class="img-fluid scale-on-hover" src="/img/nature/image2.jpg"></a></div>
-                        </div>
-                        <div class="col-md-4 col-lg-3">
-                            <div class="item"><a href="#"><img class="img-fluid scale-on-hover" src="/img/nature/image3.jpg"></a></div>
-                        </div>
-                        <div class="col-md-4 col-lg-3">
-                            <div class="item"><a href="#"><img class="img-fluid scale-on-hover" src="/img/tech/image4.jpg"></a></div>
-                        </div>
-                        <div class="col-md-4 col-lg-3">
-                            <div class="item"><a href="#"><img class="img-fluid scale-on-hover" src="/img/nature/image5.jpg"></a></div>
-                        </div>
+            </section>
+            <br>
+            <br>
+            <div class="more-projects">
+                <h3 class="text-center">More Programs</h3>
+                <div class="row gallery">
+                    <div class="col-md-4 col-lg-3">
+                        <div class="item"><a href="#"><img class="img-fluid scale-on-hover"
+                                    src="/img/nature/image2.jpg"></a></div>
+                    </div>
+                    <div class="col-md-4 col-lg-3">
+                        <div class="item"><a href="#"><img class="img-fluid scale-on-hover"
+                                    src="/img/nature/image3.jpg"></a></div>
+                    </div>
+                    <div class="col-md-4 col-lg-3">
+                        <div class="item"><a href="#"><img class="img-fluid scale-on-hover"
+                                    src="/img/tech/image4.jpg"></a></div>
+                    </div>
+                    <div class="col-md-4 col-lg-3">
+                        <div class="item"><a href="#"><img class="img-fluid scale-on-hover"
+                                    src="/img/nature/image5.jpg"></a></div>
                     </div>
                 </div>
+            </div>
             </div>
         </section>
     </main>
