@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
 const expressSession = require('express-session');
-const connection = require('./models/connection')
+const connection = require('./models/connection');
 
 //Routes
 const main = require('./routes/route-main');
