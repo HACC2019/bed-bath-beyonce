@@ -33,12 +33,12 @@
                                     alt="Card Image"></a>
                             <div class="card-body">
                                 <h6><a href="#"><%= project.title%></a></h6>
-                                <p class="text-muted card-text"><%= project.description%>></p>
+                                <p class="text-muted card-text text-truncate" style="max-width: fit-content;"><%= project.description%></p>
                             </div>
                         </div>
                     </div>
                     <% });
-                    } %>                 
+                    } %>
                 </div>
             </div>
         </section>
