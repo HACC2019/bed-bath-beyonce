@@ -6,6 +6,7 @@ var Project = require('../models/model-project');
 router.get('/', function(req, res){
     Project.find({})
     .sort({date_posted: -1})
+    .limit(4)
     .exec(function(err, result){
         if(err) throw err;
         res.render('view-homepage', {
