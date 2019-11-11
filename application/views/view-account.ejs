@@ -7,6 +7,9 @@
                 <section class="portfolio-block block-intro">
                         <div id="signup">
                                 <h1>Change your account settings here.</h1>
+                                <% if(account_success == true){ %>
+                                <h3 style="color:green;">YOUR CHANGES WERE SAVED!</h3>
+                                <% } %>
                                 <form action="/account/change" method="post">
                                 <p class="fname">New First Name: <input type="text" name="fname" id="fname" placeholder="<%= user.fname %>"></p>
                                 <p class="lname">New Last Name: <input type="text" name="lname" placeholder="<%= user.lname %>"></p>
@@ -27,7 +30,6 @@
             var account_errors = null;
             <% } else { %>
             var account_errors = <%- account_errors %>;
-    
             <% } %>
             
             if (account_errors != null) {

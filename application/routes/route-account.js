@@ -8,10 +8,12 @@ router.get('/', function(req, res){
     res.render('view-account', {
         title: 'account',
         user: req.session.user,
+        account_success: req.session.account_success,
         account_errors: JSON.stringify(req.session.account_errors),
     });
 
     req.session.account_errors = null;
+    req.session.account_success = null;
     req.session.save();
 });
 
@@ -65,6 +67,7 @@ router.post('/change', function(req, res){
                 result.save()
                     .then(function (result) {
                         req.session.user = result;
+                        req.session.account_success = true;
                         res.redirect('/account');
                     });
             }
