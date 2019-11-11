@@ -1,10 +1,12 @@
 <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient">
-    <div class="container"><a class="navbar-brand logo" href="/homepage">HACC</a><button data-toggle="collapse" class="navbar-toggler"
+    <div class="container"><a class="navbar-brand logo" href="/homepage">LOKAHI HUB</a><button data-toggle="collapse" class="navbar-toggler"
             data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item" role="presentation"><a class="nav-link active" href="/homepage">Home</a></li>
+                <% if(user != null && user.account_type == 'organization'){ %>
                 <li class="nav-item" role="presentation"><a class="nav-link active" href="/add-project">Add Project</a></li>
+                <% } %>
                 <li class="nav-item" role="presentation"><a class="nav-link" href="/project-list">Projects</a></li>
                 <% if(user == null){ %>
                 <li class="nav-item login" role="presentation"><a class="nav-link" href="#"">Log in</a></li>

@@ -21,25 +21,25 @@
                 </section>
         </main>
         <% include partials/footer %>
-    </body>
-    <script>
+        <script>
         $(function () {
-                <% if (account_errors == null) { %>
-                var account_errors = null;
-                <% } else { %>
-                var account_errors = <% - account_errors %>;
-                console.log(account_errors);
-                <% } %>
-                
-                if (account_errors != null) {
-                    account_errors.forEach(function (account_error) {
-                        $(`[name = ${account_error.param}]`)
-                            .css({
-                                'border': '2px solid red'
-                            })
-                            .after(`${account_error.msg}<br>`)
-                    });
-                }
-            });
-    </script>
+            <% if (account_errors == null) { %>
+            var account_errors = null;
+            <% } else { %>
+            var account_errors = <%- account_errors %>;
+    
+            <% } %>
+            
+            if (account_errors != null) {
+                account_errors.forEach(function (account_error) {
+                    $(`[name = ${account_error.param}]`)
+                        .css({
+                            'border': '2px solid red'
+                        })
+                        .after(`${account_error.msg}<br>`)
+                });
+            }
+        });
+        </script>
+    </body>
 </html>

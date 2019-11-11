@@ -27,13 +27,13 @@
                                     <% if(projects.length > 0){ 
                                         projects.forEach(function(project){ %>
                                             <div class="col-sm">
-                                            <div class="col-md-12 mx-auto"><a href="/project/<%= project._id%>"><img class="img-fluid image scale-on-hover"
-                                                    src="/uploads/<%= project.photo%>"></a>
-                                            <div class="span3">
-                                                <h3 class="card-title"><%= project.title %></h3>
-                                                <h5 class="card-text"><%= project.description %></h5>
-                                            </div>
-                                            </div>  
+                                                <div class="col-md-12 mx-auto"><a href="/project/<%= project._id%>"><img class="img-fluid image scale-on-hover"
+                                                        src="/uploads/<%= project.photo%>"></a>
+                                                <div class="span3">
+                                                    <h3 class="card-title"><%= project.title %></h3>
+                                                    <h5 class="card-text"><%= project.description %></h5>
+                                                </div>
+                                                </div>  
                                             </div>
                                         <% });
                                     } %>
