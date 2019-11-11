@@ -23,7 +23,7 @@
             <p class="confirmpassword">Confirm Password: <input type="password" name="confirmpassword"></p>
             <p class="organization">Organization: <input type="text" name="organization"></p>
             <p class="school">School: <input type="text" name="school"></p>
-            <input type="submit" value="Register!" class="register">
+            <input class="btn btn-primary btn-block" input type="submit" value="Register!" id="register">
             </form>
             </div>
 
@@ -131,7 +131,7 @@
                 $('form.signup p.confirmpassword').hide();
                 $('form.signup p.organization').hide();
                 $('form.signup p.school').hide();
-                $('form.signup .register').hide();
+                $('form.signup #register').hide();
             }
             
             $('[name = accounttype]').change(function(){
@@ -144,7 +144,7 @@
                     $('form.signup p.confirmpassword').show();
                     $('form.signup p.organization').hide();
                     $('form.signup p.school').show();
-                    $('form.signup .register').show();
+                    $('form.signup #register').show();
                 }
                 else if(selected == 'professional'){
                     $('form.signup p.fname').show();
@@ -154,7 +154,7 @@
                     $('form.signup p.confirmpassword').show();
                     $('form.signup p.organization').hide();
                     $('form.signup p.school').show();
-                    $('form.signup .register').show();
+                    $('form.signup #register').show();
                 }
                 else if(selected == 'organization'){
                     $('form.signup p.fname').show();
@@ -164,7 +164,7 @@
                     $('form.signup p.confirmpassword').show();
                     $('form.signup p.organization').show();
                     $('form.signup p.school').hide();
-                    $('form.signup .register').show();
+                    $('form.signup #register').show();
                 }
             }); 
         });
