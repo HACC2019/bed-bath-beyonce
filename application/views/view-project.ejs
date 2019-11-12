@@ -41,7 +41,7 @@
                                 <div class="card col-md-12">
                                     <div class="card-body">
                                         <div class="topright">
-                                            <h6 class="card-text"><%= comment.date_posted.getMonth()+1 %>/<%= comment.date_posted.getDate() %>/<%= comment.date_posted.getFullYear() %>  <%= comment.date_posted.getHours() %>:<%= comment.date_posted.getMinutes() %>:<%= comment.date_posted.getSeconds() %></h6>
+                                            <h6 class="card-text text-muted"><%= comment.date_posted.getMonth()+1 %>/<%= comment.date_posted.getDate() %>/<%= comment.date_posted.getFullYear() %>  <%= comment.date_posted.getHours() %>:<%= comment.date_posted.getMinutes() %>:<%= comment.date_posted.getSeconds() %></h6>
                                         </div>
                                         <strong class="card-title"><%= comment.posted_by.fname %> <%= comment.posted_by.lname %></strong>
                                         <p class="card-text"><%= comment.text %></p>
