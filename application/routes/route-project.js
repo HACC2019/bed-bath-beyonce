@@ -29,30 +29,37 @@ router.get('/:id', function(req, res){
 
 router.post('/:id/comment', function(req, res){
 
-    var comment = new Comment({
-        posted_by: req.session.user._id,
-        project: req.params.id,
-        date_posted: new Date(),
-        text: req.body.comment_text
-    });
+    if(req.session.user){
+        var comment = new Comment({
+            posted_by: req.session.user._id,
+            project: req.params.id,
+            date_posted: new Date(),
+            text: req.body.comment_text
+        });
 
-    comment.save(function(err, comment_result){
-        if(err) throw err;
+        comment.save(function(err, comment_result){
+            if(err) throw err;
 
-        Project
-            .findOne({_id: req.params.id})
-            .exec(function(err, project_result){
-                if(err) throw err;
-
-                project_result.comments.push(comment_result._id);
-                project_result.save(function(err){
+            Project
+                .findOne({_id: req.params.id})
+                .exec(function(err, project_result){
                     if(err) throw err;
 
-                    console.log('MongoDB >> Comment posted');
-                    res.redirect(`/project/${req.params.id}`);
+                    project_result.comments.push(comment_result._id);
+                    project_result.save(function(err){
+                        if(err) throw err;
+
+                        console.log('MongoDB >> Comment posted');
+                        res.redirect(`/project/${req.params.id}`);
+                    });
                 });
-            });
-    });
+        });
+    }
+    else{
+        console.log('Must be logged in to add a comment');
+    }
+
+    
         
     
 });
