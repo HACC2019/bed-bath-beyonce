@@ -45,5 +45,5 @@ app.use('/add-project', addProject);
 
 //Set server to listen to listen on defined port and log startup console
 const port = 6066;
-app.listen(port);
+app.listen(process.env.PORT || port);
 console.log(`DOE application listening on port ${port}`);
