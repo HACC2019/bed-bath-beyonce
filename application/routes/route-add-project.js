@@ -53,7 +53,7 @@ router.post('/submit', upload.single('photo'), function(req, res){
         } 
         //If no errors, user session set and return to homepage
         else {
-            if(req.session.user != null && req.session.user.account_type == 'organization'){
+            if(req.session.user != null && req.session.user.account_type == 'professional'){
                 var project = new Project({
                     posted_by: req.session.user._id,
                     title: req.body.title,

@@ -26,29 +26,30 @@
                             <!-- comments section -->
                             <div class="comments-section">
                                 <!-- comment form -->
-                                <form class="clearfix" method="post" id="comment_form" style="min-width: 180%;">
+                                <form class="clearfix" action="/project/<%= project._id %>/comment" method="post" id="comment_form" style="min-width: 180%;">
                                     <h4>Post a comment:</h4>
                                     <textarea name="comment_text" id="comment_text" class="form-control" cols="30" rows="3"></textarea><br>
                                     <button class="btn btn-primary btn-sm pull-right" id="submit_comment">Submit
                                         comment</button>
                                 </form>
                                 <br>
-                                <h3><span id="comments_count">0</span> Comment(s)</h3>
+                                <h3><span id="comments_count"><%= project.comments.length %></span> Comment(s)</h3>
                             </div>
                             <hr>
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="topright">
-                                        <h6 class="card-text">10/10/2010</h6>
-                                    </div>
-                                    <strong class="card-title">Bryant Sanchez</strong>
-                                    <p class="card-text">Something about this amazing project.</p>
-                                    <br>
-                                    <div class="bottomright">
-                                        <button type="button">Reply</button>
+                            <% if(project.comments.length > 0){ 
+                                project.comments.forEach(function(comment){ %>
+                                <div class="card col-md-12">
+                                    <div class="card-body">
+                                        <div class="topright">
+                                            <h6 class="card-text text-muted"><%= comment.date_posted.getMonth()+1 %>/<%= comment.date_posted.getDate() %>/<%= comment.date_posted.getFullYear() %>  <%= comment.date_posted.getHours() %>:<%= comment.date_posted.getMinutes() %>:<%= comment.date_posted.getSeconds() %></h6>
+                                        </div>
+                                        <strong class="card-title"><%= comment.posted_by.fname %> <%= comment.posted_by.lname %></strong>
+                                        <p class="card-text"><%= comment.text %></p>
                                     </div>
                                 </div>
-                            </div>
+                                <% });
+                            } %>
+                            
                         </div>
 
                     </div>
@@ -73,6 +74,7 @@
                     </div>
                 </div>
             </div>
+            <br>
             <section class="portfolio-block website gradient">
                 <div class="container">
                     <div class="heading">
