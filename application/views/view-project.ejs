@@ -119,18 +119,13 @@
             <div class="more-projects">
                 <h3 class="text-center">More Programs</h3>
                 <div class="row gallery">
-                    <div class="col-md-4 col-lg-3">
-                        <div class="item"><a href="#"><img class="img-fluid scale-on-hover" src="/img/nature/image2.jpg"></a></div>
-                    </div>
-                    <div class="col-md-4 col-lg-3">
-                        <div class="item"><a href="#"><img class="img-fluid scale-on-hover" src="/img/nature/image3.jpg"></a></div>
-                    </div>
-                    <div class="col-md-4 col-lg-3">
-                        <div class="item"><a href="#"><img class="img-fluid scale-on-hover" src="/img/tech/image4.jpg"></a></div>
-                    </div>
-                    <div class="col-md-4 col-lg-3">
-                        <div class="item"><a href="#"><img class="img-fluid scale-on-hover" src="/img/nature/image5.jpg"></a></div>
-                    </div>
+                    <% if(other_projects.length > 0){ 
+                        other_projects.forEach(function(project){ %>
+                        <div class="col-md-4 col-lg-3">
+                            <div class="item"><a href="/project/<%= project._id%>"><img class="img-fluid scale-on-hover" src="/uploads/<%= project.photo%>"></a></div>
+                        </div>
+                        <% });
+                    } %>
                 </div>
             </div>
             </div>

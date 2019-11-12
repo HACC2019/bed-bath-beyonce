@@ -12,17 +12,24 @@ router.get('/:id', function(req, res){
             path: 'comments',
             populate: {path: 'posted_by'}
         })
-        .exec(function(err, result){
+        .exec(function(err, result_project){
             if(err) throw err;
-            if(result == null){
+            if(result_project == null){
                 console.log('MongoDB >> Project page not found');
             }
             else{
-                res.render('view-project', {
-                    title: 'project',
-                    project: result,
-                    user: req.session.user
-                });
+                Project
+                    .find({_id:{$ne: req.params.id}})
+                    .limit(4)
+                    .exec(function(err, result_other_projects){
+                        if(err) throw err;
+                        res.render('view-project', {
+                            title: 'project',
+                            project: result_project,
+                            other_projects: result_other_projects,
+                            user: req.session.user
+                        });
+                    });
             }
         });
 });

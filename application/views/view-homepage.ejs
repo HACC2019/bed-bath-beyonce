@@ -26,23 +26,23 @@
                         <div class=container>
                             <div class="row">
                                 <% if(projects.length > 0){ 
-                                        projects.forEach(function(project){ %>
-                                <div class="col-sm">
-                                    <div class="col-md-12 mx-auto"><a href="/project/<%= project._id%>"><img
-                                                class="img-fluid image scale-on-hover"
-                                                src="/uploads/<%= project.photo%>"></a>
-                                        <div class="span3">
-                                             <h4 class="card-title"><%= project.title %></h4>
-                                                <h6 class="card-text"><span class="d-inline-block text-truncate" style="max-width: 200px;"><%= project.description %></h6></span>
-                                                <div>
-                                                    <a class="btn btn-primary" href="/project/<%= project._id%>"
-                                                        role="button">Read More
-                                                    </a>
-                                                </div>
+                                    projects.forEach(function(project){ %>
+                                    <div class="col-sm">
+                                        <div class="col-md-12 mx-auto"><a href="/project/<%= project._id%>"><img
+                                                    class="img-fluid image scale-on-hover"
+                                                    src="/uploads/<%= project.photo%>"></a>
+                                            <div class="span3">
+                                                    <h4 class="card-title"><%= project.title %></h4>
+                                                    <h6 class="card-text"><span class="d-inline-block text-truncate" style="max-width: 200px;"><%= project.description %></h6></span>
+                                                    <div>
+                                                        <a class="btn btn-primary" href="/project/<%= project._id%>"
+                                                            role="button">Read More
+                                                        </a>
+                                                    </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <% });
+                                    <% });
                                 } %>
                             </div>
                         </div>
