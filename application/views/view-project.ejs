@@ -38,7 +38,7 @@
                             <hr>
                             <% if(project.comments.length > 0){ 
                                 project.comments.forEach(function(comment){ %>
-                                <div class="card">
+                                <div class="card col-md-12">
                                     <div class="card-body">
                                         <div class="topright">
                                             <h6 class="card-text"><%= comment.date_posted.getMonth()+1 %>/<%= comment.date_posted.getDate() %>/<%= comment.date_posted.getFullYear() %>  <%= comment.date_posted.getHours() %>:<%= comment.date_posted.getMinutes() %>:<%= comment.date_posted.getSeconds() %></h6>
