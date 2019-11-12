@@ -58,18 +58,29 @@
                             <span class="meta-heading">Tags</span>
                             <a href="#">Resource</a>
                             <a href="#">Project</a>
+                            <hr>
                             <span class="meta-heading">Date</span>
                             <span>
                                 <%= project.start_date %> -</span>
                             <span>
                                 <%= project.end_date %></span>
+                            <hr>
                             <span class="meta-heading">Address</span>
                             <span>
                                 <%= project.location %></span>
+                            <hr>
                             <span class="meta-heading">Badge List</span>
                             <i class="icon ion-ios-star-outline"> Astrology</i>
                             <i class="icon ion-ios-lightbulb-outline"> STEM</i>
                             <i class="icon ion-ios-gear-outline"> Engineering</i>
+                            <button class="btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">Add Badge
+                            <span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                <ul>
+                                    <li><a href="/#">Something</a></li>
+                                    <li><a href="/#">Something</a></li>
+                                </ul>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -127,9 +138,9 @@
     </main>
     <% include partials/footer %>
     <script>
-        function Function() {
-            document.getElementById("SelectAmount").selectedIndex.focus();
-        }
+        $(function(){
+            (".dropdown-toggle").dropdown()
+        });
     </script>
     <style>
         .topright {
