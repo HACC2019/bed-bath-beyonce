@@ -5,20 +5,19 @@
 <body>
     <main>
         <section class="portfolio-block block-intro">
-            <div id="project">
-                <h1>Create a Project</h1>
-                <form action="/add-project/submit" method="post" enctype="multipart/form-data">
-                    
-                    <p class="photo">Upload photo: <input class = "centered" type="file" name="photo" accept="image/*"/></p>
-                    
-                    
-                    <p class="title">Project Title: <input type="text" name="title"></p>
-                    <p class="description">Description: <textarea name="description" type="text" class="description"></textarea></p>
-                    <p class="school">School: <input type="school" name="school"></p>
-                    <p class="location">Location: <input type="location" name="location"></p>
-                    <p class="sdate">Date Start: <input type="text" name="sdate"></p>
-                    <p class="edate">Date End: <input type="text" name="edate"></p>              
-                    <input type="submit" value="Publish!">
+            <div class="contact-clean">
+                <form action="/add-project/submit" method="post" enctype="multipart/form-data" class="text-center">
+                    <h2 class="text-center">Create a Project</h2>
+                    <div class="form-group">
+                        <input class="form-control" type="file" name="photo" placeholder="Upload photo" accept="image/*"//><br>
+                        <input class="form-control" type="text" name="title" placeholder="Project Title:" /><br>
+                        <textarea class="form-control" type="text" name="description" rows="14" placeholder="Description:"></textarea><br>
+                        <input class="form-control" type="text" name="school" placeholder="School:" /><br>
+                        <input class="form-control" type="text" name="location" placeholder="Location:" /><br>
+                        <input class="form-control" type="text" name="sdate" placeholder="Date Start:" /><br>
+                        <input class="form-control" type="text" name="edate" placeholder="Date End:" /><br>
+                        <input class="btn btn-primary btn-block" input type="submit" value="Publish!" id="publish">
+                    </div>
                 </form>
             </div>
         </section>
