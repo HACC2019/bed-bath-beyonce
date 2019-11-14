@@ -12,11 +12,13 @@
                     <h2>
                         <%= project.title %>
                     </h2>
+
+                    <div class="image"
+                        style="background-image:url(&quot;/uploads/<%= project.photo%>&quot;); background-size:contain; background-position:center;">
+                    </div>
+                    <button class="form-control btn btn-outline-primary bounce animated" type="button">Join This
+                        Project!</button>
                 </div>
-                <div class="image" style="background-image:url(&quot;/uploads/<%= project.photo%>&quot;); background-size:contain; background-position:center;">
-                </div>
-                <button class="form-control btn btn-outline-primary bounce animated" type="button">Join This Project!</button>
-                <br><br>
                 <div class="row">
                     <div class="col-12 col-md-6 offset-md-1 info">
                         <h3>Description</h3>
@@ -28,9 +30,11 @@
                             <!-- comments section -->
                             <div class="comments-section">
                                 <!-- comment form -->
-                                <form class="clearfix" action="/project/<%= project._id %>/comment" method="post" id="comment_form" style="min-width: 180%;">
+                                <form class="clearfix" action="/project/<%= project._id %>/comment" method="post"
+                                    id="comment_form" style="min-width: 180%;">
                                     <h4>Post a comment:</h4>
-                                    <textarea name="comment_text" id="comment_text" class="form-control" cols="30" rows="3"></textarea><br>
+                                    <textarea name="comment_text" id="comment_text" class="form-control" cols="30"
+                                        rows="3"></textarea><br>
                                     <button class="btn btn-primary btn-sm pull-right" id="submit_comment">Submit
                                         comment</button>
                                 </form>
@@ -40,18 +44,22 @@
                             <hr>
                             <% if(project.comments.length > 0){ 
                                 project.comments.forEach(function(comment){ %>
-                                <div class="card col-md-12">
-                                    <div class="card-body">
-                                        <div class="topright">
-                                            <h6 class="card-text text-muted"><%= comment.date_posted.getMonth()+1 %>/<%= comment.date_posted.getDate() %>/<%= comment.date_posted.getFullYear() %>  <%= comment.date_posted.getHours() %>:<%= comment.date_posted.getMinutes() %>:<%= comment.date_posted.getSeconds() %></h6>
-                                        </div>
-                                        <strong class="card-title"><%= comment.posted_by.fname %> <%= comment.posted_by.lname %></strong>
-                                        <p class="card-text"><%= comment.text %></p>
+                            <div class="card col-md-12">
+                                <div class="card-body">
+                                    <div class="topright">
+                                        <h6 class="card-text text-muted">
+                                            <%= comment.date_posted.getMonth()+1 %>/<%= comment.date_posted.getDate() %>/<%= comment.date_posted.getFullYear() %>
+                                            <%= comment.date_posted.getHours() %>:<%= comment.date_posted.getMinutes() %>:<%= comment.date_posted.getSeconds() %>
+                                        </h6>
                                     </div>
+                                    <strong class="card-title"><%= comment.posted_by.fname %>
+                                        <%= comment.posted_by.lname %></strong>
+                                    <p class="card-text"><%= comment.text %></p>
                                 </div>
-                                <% });
+                            </div>
+                            <% });
                             } %>
-                            
+
                         </div>
 
                     </div>
@@ -73,20 +81,22 @@
                             <hr>
                             <span class="meta-heading">Badge List</span>
                             <div name="badges">
-                            <!-- badges appended from jquery -->
+                                <!-- badges appended from jquery -->
                             </div>
-                            <select class="form-control btn btn-outline-primary btn-md dropdown-toggle" name="add-badge">
-                                    <option value="null" selected hidden>Add Badge +</option>
-                                    <option value="English Language Arts" class="list-item">English Language Arts</option>
-                                    <option value="Mathematics" class="list-item">Mathematics</option>
-                                    <option value="Science" class="list-item">Science</option>
-                                    <option value="Computer Science" class="list-item">Computer Science</option>
-                                    <option value="Social Studies" class="list-item">Social Studies</option>
-                                    <option value="Career and Technical Education" class="list-item">Career and Technical Education</option>
-                                    <option value="Fine Arts" class="list-item">Fine Arts</option>
-                                    <option value="Health" class="list-item">Health</option>
-                                    <option value="Physical Education" class="list-item">Physical Education</option>
-                                    <option value="World Languages" class="list-item">World Langauges</option>
+                            <select class="form-control btn btn-outline-primary btn-md dropdown-toggle"
+                                name="add-badge">
+                                <option value="null" selected hidden>Add Badge +</option>
+                                <option value="English Language Arts" class="list-item">English Language Arts</option>
+                                <option value="Mathematics" class="list-item">Mathematics</option>
+                                <option value="Science" class="list-item">Science</option>
+                                <option value="Computer Science" class="list-item">Computer Science</option>
+                                <option value="Social Studies" class="list-item">Social Studies</option>
+                                <option value="Career and Technical Education" class="list-item">Career and Technical
+                                    Education</option>
+                                <option value="Fine Arts" class="list-item">Fine Arts</option>
+                                <option value="Health" class="list-item">Health</option>
+                                <option value="Physical Education" class="list-item">Physical Education</option>
+                                <option value="World Languages" class="list-item">World Langauges</option>
                             </select>
                         </div>
                     </div>
@@ -115,7 +125,8 @@
                         <div class="form-group">
                             <p>
                                 <label for="myTextArea">Other Options:</label>
-                                <textarea id="myTextArea" rows="3" class="form-control">Please specify your donation here.</textarea>
+                                <textarea id="myTextArea" rows="3"
+                                    class="form-control">Please specify your donation here.</textarea>
                             </p>
                             <button class="btn btn-primary btn-sm pull-right" id="submit_donation">Submit
                                 Donation</button>
@@ -124,37 +135,17 @@
                 </div>
             </section>
             <br>
-
-        <!-- DATE PICKER FEATURE???? -->
-
-            <div class="container d-flex justify-content-center align-items-center vh-100">
-                <div class="card" id="example">
-                    <div class="card-body shadow p-5" id="example">
-                        <h2 class="text-center card-title mb-5">Date Picker</h2>
-                        <form class="date-select">
-                            <div class="form-group">
-                                <div class="input-group mb-4">
-                                    <div class="input-group-prepend"><span class="input-group-text">From</span></div><input class="form-control" type="time" id="datePickerFrom" /></div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group mb-4">
-                                    <div class="input-group-prepend"><span class="input-group-text">To     </span></div><input class="form-control" type="time" id="datePickerTo" /></div>
-                            </div>
-                            <div class="form-group mt-4"><button class="btn btn-primary btn-block" type="submit">Send</button></div>
-                        </form>
-                    </div>
-                </div>
-            </div>
             <br>
             <div class="more-projects">
                 <h3 class="text-center">More Programs</h3>
                 <div class="row gallery">
                     <% if(other_projects.length > 0){ 
                         other_projects.forEach(function(project){ %>
-                        <div class="col-md-4 col-lg-3">
-                            <div class="item"><a href="/project/<%= project._id%>"><img class="img-fluid scale-on-hover" src="/uploads/<%= project.photo%>"></a></div>
-                        </div>
-                        <% });
+                    <div class="col-md-4 col-lg-3">
+                        <div class="item"><a href="/project/<%= project._id%>"><img class="img-fluid scale-on-hover"
+                                    src="/uploads/<%= project.photo%>"></a></div>
+                    </div>
+                    <% });
                     } %>
                 </div>
             </div>
@@ -163,40 +154,40 @@
     </main>
     <% include partials/footer %>
     <script>
-    $(function(){
+        $(function () {
 
-        $.ajax({
-            type: 'GET',
-            url: '/project/<%= project._id %>/badge',
-            dataType: 'json',
-            success: function(result){
-                refresh_badges(result);
-            }
-        });
+            $.ajax({
+                type: 'GET',
+                url: '/project/<%= project._id %>/badge',
+                dataType: 'json',
+                success: function (result) {
+                    refresh_badges(result);
+                }
+            });
 
-        $('[name = add-badge]').change(function(){
+            $('[name = add-badge]').change(function () {
                 var selected = $('[name = add-badge] option:selected').val();
-                var data = {badge: selected}
+                var data = { badge: selected }
 
                 $.ajax({
                     type: 'POST',
                     url: '/project/<%= project._id %>/badge',
                     dataType: 'json',
                     data: data,
-                    success: function(result){
+                    success: function (result) {
                         refresh_badges(result);
                         $('[name = add-badge]').val("null");
                     }
                 });
-        });
-
-        var refresh_badges = function(project_data){
-            $('[name = badges]').empty();
-            project_data.badges.forEach(function(badge){
-                $('[name = badges]')
-                .append(` ${badge.icon} ${badge.title}  &nbsp; <button class="fa fa-close" style="color:red"></button>`);
             });
-        }
+
+            var refresh_badges = function (project_data) {
+                $('[name = badges]').empty();
+                project_data.badges.forEach(function (badge) {
+                    $('[name = badges]')
+                        .append(` ${badge.icon} ${badge.title}  &nbsp; <button class="fa fa-close" style="color:red"></button>`);
+                });
+            }
 
 
     });

@@ -2,6 +2,7 @@
 <html lang="en">
 <% include partials/head %>
 <% include partials/nav %>
+
 <body>
     <main>
         <section class="portfolio-block block-intro">
@@ -9,15 +10,19 @@
                 <form action="/add-project/submit" method="post" enctype="multipart/form-data" class="text-center">
                     <h2 class="text-center">Create a Project</h2>
                     <div class="form-group">
-                        <input class="form-control" type="file" name="photo" placeholder="Upload photo" accept="image/*"//><br>
+                        <input class="form-control" type="file" name="photo" placeholder="Upload photo"
+                            accept="image/*"//> <br>
                         <input class="form-control" type="text" name="title" placeholder="Project Title:" /><br>
-                        <textarea class="form-control" type="text" name="description" rows="14" placeholder="Description:"></textarea><br>
+                        <textarea class="form-control" type="text" name="description" rows="14"
+                            placeholder="Description:"></textarea><br>
                         <input class="form-control" type="text" name="school" placeholder="School:" /><br>
                         <input class="form-control" type="text" name="location" placeholder="Location:" /><br>
                         <div class="input-group-prepend"><span class="input-group-text">From </span>
-                        <input class="form-control" type="datetime-local" name="sdate" placeholder="Start:" /></div><br>
-                        <div class="input-group-prepend"><span class="input-group-text">To   </span>
-                        <input class="form-control" type="datetime-local" name="edate" placeholder="End:" /></div><br>
+                            <input class="form-control" type="datetime-local" name="sdate" placeholder="Start:" /></div>
+                        <br>
+                        <div class="input-group-prepend"><span class="input-group-text">To</span>
+                            <input class="form-control" type="datetime-local" name="edate" placeholder="End:" /></div>
+                        <br>
                         <input class="btn btn-primary btn-block" input type="submit" value="Publish!" id="publish">
                     </div>
                 </form>
@@ -27,23 +32,23 @@
     <% include partials/footer %>
 
     <script>
-    $(function(){
-        <% if(project_errors == null){ %>
+        $(function () {
+        <% if (project_errors == null) { %>
         var project_errors = null;
-        <% }else{ %>
-        var project_errors = <%- project_errors %>;
+        <% } else { %>
+        var project_errors = <% - project_errors %>;
         <% } %>
 
-        if(project_errors != null){
-            project_errors.forEach(function(project_error){
-                $(`[name = ${project_error.param}]`)
-                .css({
-                    'border': '2px solid red'
-                })
-                .after(`${project_error.msg}<br>`)
-            });
-        }
-    });
+        if (project_errors != null) {
+                project_errors.forEach(function (project_error) {
+                    $(`[name = ${project_error.param}]`)
+                        .css({
+                            'border': '2px solid red'
+                        })
+                        .after(`${project_error.msg}<br>`)
+                });
+            }
+        });
     </script>
 </body>
 
