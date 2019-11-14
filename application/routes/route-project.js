@@ -96,13 +96,17 @@ router.post('/:id/badge', function(req, res){
         .exec(function(err, badge_result){
             if(err) throw err;
             var dup = false;
-            for(var i = 0; i < project_result.badges.length; i++){
-                if(project_result.badges[i]._id.equals(badge_result._id)){
+            project_result.badges.forEach(function(item, index, arr){
+                if(item._id.equals(badge_result._id)){
+                    arr.splice(index, 1);
                     dup = true;
                 }
-            }
+            });
             if(dup){
-                res.send(project_result);
+                project_result.save(function(err, updated_result){
+                    if(err) throw err;
+                    res.send(updated_result);
+                });
             }
             else{
                 project_result.badges.push(badge_result);

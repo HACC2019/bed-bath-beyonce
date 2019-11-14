@@ -69,8 +69,9 @@
                             <div name="badges">
                                 <!-- badges appended from jquery -->
                             </div>
+                            <% if(user != null && user.account_type == 'admin'){ %>
                             <select class="form-control btn btn-outline-primary btn-md dropdown-toggle" name="add-badge">
-                                <option value="null" selected hidden>Add Badge +</option>
+                                <option value="null" selected hidden>Add/Remove Badge</option>
                                 <option value="English Language Arts" class="list-item">English Language Arts</option>
                                 <option value="Mathematics" class="list-item">Mathematics</option>
                                 <option value="Science" class="list-item">Science</option>
@@ -83,6 +84,7 @@
                                 <option value="Physical Education" class="list-item">Physical Education</option>
                                 <option value="World Languages" class="list-item">World Languages</option>
                             </select>
+                            <% } %>
                             <hr>
                             <span class="meta-heading">Date</span>
                             <span>
@@ -182,7 +184,7 @@
                 $('[name = badges]').empty();
                 project_data.badges.forEach(function (badge) {
                     $('[name = badges]')
-                        .append(` ${badge.icon} ${badge.title}  &nbsp; <button class="fa fa-close" style="color:red"></button>` + "<br />");
+                        .append(`${badge.icon} ${badge.title}<br />`);
                 });
             }
 
