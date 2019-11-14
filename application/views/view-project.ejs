@@ -76,7 +76,7 @@
                             <!-- badges appended from jquery -->
                             </div>
                             <select class="form-control btn btn-outline-primary btn-md dropdown-toggle" name="add-badge">
-                                    <option value="null" selected hidden>Badge This!</option>
+                                    <option value="null" selected hidden>Add Badge +</option>
                                     <option value="English Language Arts">English Language Arts</option>
                                     <option value="Mathematics">Mathematics</option>
                                     <option value="Science">Science</option>
@@ -164,6 +164,7 @@
                     data: data,
                     success: function(result){
                         refresh_badges(result);
+                        $('[name = add-badge]').val("null");
                     }
                 });
         });
