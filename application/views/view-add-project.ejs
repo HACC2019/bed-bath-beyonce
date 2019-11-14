@@ -14,8 +14,10 @@
                         <textarea class="form-control" type="text" name="description" rows="14" placeholder="Description:"></textarea><br>
                         <input class="form-control" type="text" name="school" placeholder="School:" /><br>
                         <input class="form-control" type="text" name="location" placeholder="Location:" /><br>
-                        <input class="form-control" type="text" name="sdate" placeholder="Date Start:" /><br>
-                        <input class="form-control" type="text" name="edate" placeholder="Date End:" /><br>
+                        <div class="input-group-prepend"><span class="input-group-text">From </span>
+                        <input class="form-control" type="datetime-local" name="sdate" placeholder="Start:" /></div><br>
+                        <div class="input-group-prepend"><span class="input-group-text">To   </span>
+                        <input class="form-control" type="datetime-local" name="edate" placeholder="End:" /></div><br>
                         <input class="btn btn-primary btn-block" input type="submit" value="Publish!" id="publish">
                     </div>
                 </form>
