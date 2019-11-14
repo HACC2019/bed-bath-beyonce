@@ -10,7 +10,7 @@
                 <div class="heading">
                     <!-- <h2>Route to a specific program</h2> -->
                     <h2>
-                        <%= project.name %>
+                        <%= project.title %>
                     </h2>
                 </div>
                 <div class="image" style="background-image:url(&quot;/uploads/<%= project.photo%>&quot;); background-size:contain; background-position:center;">
@@ -176,6 +176,8 @@
                 .append(` ${badge.icon} ${badge.title}  &nbsp; <button class="fa fa-close" style="color:red"></button>`);
             });
         }
+
+        $('button.badge').
 
     });
     </script>
