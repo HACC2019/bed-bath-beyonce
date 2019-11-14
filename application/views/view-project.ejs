@@ -173,7 +173,7 @@
             $('[name = badges]').empty();
             project_data.badges.forEach(function(badge){
                 $('[name = badges]')
-                .append(`<i class="icon ion-ios-flask"> ${badge.title} &nbsp; &nbsp; <i class="fa fa-close" style="color:red"></i></i>`);
+                .append(` ${badge.icon} ${badge.title}  &nbsp; &nbsp; <button class="fa fa-close" style="color:red"></button>`);
             });
         }
 
