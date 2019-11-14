@@ -77,16 +77,16 @@
                             </div>
                             <select class="form-control btn btn-outline-primary btn-md dropdown-toggle" name="add-badge">
                                     <option value="null" selected hidden>Add Badge +</option>
-                                    <option value="English Language Arts">English Language Arts</option>
-                                    <option value="Mathematics">Mathematics</option>
-                                    <option value="Science">Science</option>
-                                    <option value="Computer Science">Computer Science</option>
-                                    <option value="Social Studies">Social Studies</option>
-                                    <option value="Career and Technical Education">Career and Technical Education</option>
-                                    <option value="Fine Arts">Fine Arts</option>
-                                    <option value="Health">Health</option>
-                                    <option value="Physical Education">Physical Education</option>
-                                    <option value="World Languages">World Langauges</option>
+                                    <option value="English Language Arts" class="list-item">English Language Arts</option>
+                                    <option value="Mathematics" class="list-item">Mathematics</option>
+                                    <option value="Science" class="list-item">Science</option>
+                                    <option value="Computer Science" class="list-item">Computer Science</option>
+                                    <option value="Social Studies" class="list-item">Social Studies</option>
+                                    <option value="Career and Technical Education" class="list-item">Career and Technical Education</option>
+                                    <option value="Fine Arts" class="list-item">Fine Arts</option>
+                                    <option value="Health" class="list-item">Health</option>
+                                    <option value="Physical Education" class="list-item">Physical Education</option>
+                                    <option value="World Languages" class="list-item">World Langauges</option>
                             </select>
                         </div>
                     </div>
@@ -124,6 +124,24 @@
                 </div>
             </section>
             <br>
+            <div class="container d-flex justify-content-center align-items-center vh-100">
+                <div class="card" id="example">
+                    <div class="card-body shadow p-5" id="example">
+                        <h2 class="text-center card-title mb-5">Date Picker</h2>
+                        <form class="date-select">
+                            <div class="form-group">
+                                <div class="input-group mb-4">
+                                    <div class="input-group-prepend"><span class="input-group-text">From</span></div><input class="form-control" type="text" id="datePickerFrom" /></div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group mb-4">
+                                    <div class="input-group-prepend"><span class="input-group-text">To     </span></div><input class="form-control" type="text" id="datePickerTo" /></div>
+                            </div>
+                            <div class="form-group mt-4"><button class="btn btn-primary btn-block" type="submit">Send</button></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
             <br>
             <div class="more-projects">
                 <h3 class="text-center">More Programs</h3>
