@@ -81,7 +81,7 @@
                                 <option value="Fine Arts" class="list-item">Fine Arts</option>
                                 <option value="Health" class="list-item">Health</option>
                                 <option value="Physical Education" class="list-item">Physical Education</option>
-                                <option value="World Languages" class="list-item">World Langauges</option>
+                                <option value="World Languages" class="list-item">World Languages</option>
                             </select>
                             <hr>
                             <span class="meta-heading">Date</span>
@@ -183,7 +183,7 @@
                 $('[name = badges]').empty();
                 project_data.badges.forEach(function (badge) {
                     $('[name = badges]')
-                        .append(` ${badge.icon} ${badge.title}  &nbsp; <button class="fa fa-close" style="color:red"></button>`);
+                        .append(` ${badge.icon} ${badge.title}  &nbsp; <button class="fa fa-close" style="color:red"></button>` + "<br />");
                 });
             }
 
