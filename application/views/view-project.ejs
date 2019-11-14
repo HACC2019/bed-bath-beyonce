@@ -194,9 +194,11 @@
             $('[name = badges]').empty();
             project_data.badges.forEach(function(badge){
                 $('[name = badges]')
-                .append(` ${badge.icon} ${badge.title}  &nbsp; &nbsp; <button class="fa fa-close" style="color:red"></button>`);
+                .append(` ${badge.icon} ${badge.title}  &nbsp; &nbsp; <button class="badge fa fa-close" style="color:red"></button>`);
             });
         }
+
+        $('button.badge').
 
     });
     </script>
