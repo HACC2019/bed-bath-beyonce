@@ -35,7 +35,7 @@
                                                     class="img-fluid image scale-on-hover"
                                                     src="/uploads/<%= project.photo%>"></a>
                                             <div class="span3">
-                                                    <h4 class="card-title"><%= project.title %></h4>
+                                                    <h5 class="card-body"><a href="/project/<%= project._id%>" style="color: black;"><%= project.title%></a></h5>
                                                     <h6 class="card-text"><span class="d-inline-block text-truncate" style="max-width: 200px;"><%= project.description %></h6></span>
                                                     <div>
                                                         <a class="btn btn-primary" href="/project/<%= project._id%>"

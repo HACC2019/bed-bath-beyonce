@@ -14,7 +14,8 @@
                         <input name ="query" class="form-control my-0 py-1 cyan-border" type="text" placeholder="Search"
                             aria-label="Search">
                         <div class="input-group-append">
-                            <button class="input-group-text lime lighten-2" href="#"><span class="ion-ios-search-strong" id="basic-text1"></span><i class="material-icons"
+                            <span class="input-group-text cyan lighten-2" id="basic-text1"><button class="searchButton"
+                                    href="#"><i class="material-icons"
                                     aria-hidden="true"></i></button></span>
                             </form>
                         </div>
@@ -31,7 +32,7 @@
                                     class="card-img-top scale-on-hover img-fluid" src="/uploads/<%= project.photo%>"
                                     alt="Card Image"></a>
                             <div class="card-body">
-                                <h6><a href="#"><%= project.title%></a></h6>
+                                <h6><a href="/project/<%= project._id%>"><%= project.title%></a></h6>
                                 <p class="text-muted card-text text-truncate" style="max-width: fit-content;"><%= project.description%></p>
                             </div>
                         </div>
