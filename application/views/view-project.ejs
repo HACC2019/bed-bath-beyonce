@@ -65,26 +65,11 @@
                     </div>
                     <div class="col-12 col-md-3 offset-md-1 meta">
                         <div class="tags">
-                            <span class="meta-heading">Tags</span>
-                            <a href="#">Resource</a>
-                            <a href="#">Project</a>
-                            <hr>
-                            <span class="meta-heading">Date</span>
-                            <span>
-                                <%= project.start_date %> -</span>
-                            <span>
-                                <%= project.end_date %></span>
-                            <hr>
-                            <span class="meta-heading">Address</span>
-                            <span>
-                                <%= project.location %></span>
-                            <hr>
                             <span class="meta-heading">Badge List</span>
                             <div name="badges">
                                 <!-- badges appended from jquery -->
                             </div>
-                            <select class="form-control btn btn-outline-primary btn-md dropdown-toggle"
-                                name="add-badge">
+                            <select class="form-control btn btn-outline-primary btn-md dropdown-toggle" name="add-badge">
                                 <option value="null" selected hidden>Add Badge +</option>
                                 <option value="English Language Arts" class="list-item">English Language Arts</option>
                                 <option value="Mathematics" class="list-item">Mathematics</option>
@@ -98,6 +83,19 @@
                                 <option value="Physical Education" class="list-item">Physical Education</option>
                                 <option value="World Languages" class="list-item">World Langauges</option>
                             </select>
+                            <hr>
+                            <span class="meta-heading">Date</span>
+                            <span>
+                                <%= project.start_date %> -</span>
+                            <span>
+                                <%= project.end_date %></span>
+                            <hr>
+                            <span class="meta-heading">Address</span>
+                            <span>
+                                <%= project.location %></span>
+                            <iframe id="gmap_canvas" src="https://maps.google.com/maps?q=<%=project.location%>&t=&z=13&ie=UTF8&iwloc=&output=embed">
+                            </iframe>
+                            
                         </div>
                     </div>
                 </div>
@@ -185,7 +183,7 @@
                 $('[name = badges]').empty();
                 project_data.badges.forEach(function (badge) {
                     $('[name = badges]')
-                        .append(` ${badge.icon} ${badge.title}  &nbsp; <button class="fa fa-close" style="color:red"></button>` + "<br />");
+                        .append(` ${badge.icon} ${badge.title}  &nbsp; <button class="fa fa-close" style="color:red"></button>`);
                 });
             }
 
