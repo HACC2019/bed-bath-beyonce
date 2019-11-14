@@ -72,9 +72,10 @@
                                 <%= project.location %></span>
                             <hr>
                             <span class="meta-heading">Badge List</span>
-                            <i class="icon ion-ios-flask"> Science &nbsp; &nbsp; <i class="fa fa-close" style="color:red"></i></i>
-                            <i class="icon ion-ios-calculator"> Mathematics &nbsp; &nbsp; <i class="fa fa-close" style="color:red"></i></i>
-                            <select class="form-control btn btn-outline-primary btn-md dropdown-toggle" name="badgeType">
+                            <div name="badges">
+                            <!-- badges appended from jquery -->
+                            </div>
+                            <select class="form-control btn btn-outline-primary btn-md dropdown-toggle" name="add-badge">
                                     <option value="null" selected hidden>Badge This!</option>
                                     <option value="English Language Arts">English Language Arts</option>
                                     <option value="Mathematics">Mathematics</option>
@@ -142,7 +143,39 @@
     <% include partials/footer %>
     <script>
     $(function(){
-        (".dropdown-toggle").dropdown();
+
+        $.ajax({
+            type: 'GET',
+            url: '/project/<%= project._id %>/badge',
+            dataType: 'json',
+            success: function(result){
+                refresh_badges(result);
+            }
+        });
+
+        $('[name = add-badge]').change(function(){
+                var selected = $('[name = add-badge] option:selected').val();
+                var data = {badge: selected}
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/project/<%= project._id %>/badge',
+                    dataType: 'json',
+                    data: data,
+                    success: function(result){
+                        refresh_badges(result);
+                    }
+                });
+        });
+
+        var refresh_badges = function(project_data){
+            $('[name = badges]').empty();
+            project_data.badges.forEach(function(badge){
+                $('[name = badges]')
+                .append(`<i class="icon ion-ios-flask"> ${badge.title} &nbsp; &nbsp; <i class="fa fa-close" style="color:red"></i></i>`);
+            });
+        }
+
     });
     </script>
     <style>

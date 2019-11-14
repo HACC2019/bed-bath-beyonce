@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 const projectSchema = new Schema({
     posted_by: {type: mongoose.Schema.Types.ObjectId, ref: 'user', required: true},
+    badges: [{type: mongoose.Schema.Types.ObjectId, ref: 'badge'}],
     comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'comment'}],
     title: String,
     description: String,
