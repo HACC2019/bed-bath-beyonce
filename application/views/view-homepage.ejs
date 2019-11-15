@@ -93,7 +93,6 @@
             var render_calendar = function (project_data) {
                 $('[name = calendar]').empty();
                 project_data.forEach(function (project) {
-                    console.log(new Date(project.start_date).toLocaleString('en-US', { month: 'short' }));
                     $('[name = calendar]')
                         .append(`
                 <a href="/project/${project._id}" style="color:white">

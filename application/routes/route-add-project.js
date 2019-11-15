@@ -106,7 +106,7 @@ router.post('/submit', upload.single('photo'), function(req, res){
                         user_result.save(function(err){
                             if(err) throw err;
                             console.log('MongoDB >> Project saved');
-                            res.redirect('/');
+                            res.redirect('/project-list');
                         });
                     });
 

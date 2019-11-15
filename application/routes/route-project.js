@@ -2,6 +2,7 @@ const express = require('express');
 var router = express.Router();
 
 var Project = require('../models/model-project');
+var User = require('../models/model-user');
 var Comment = require('../models/model-comment');
 var Badge = require('../models/model-badge');
 
@@ -121,41 +122,81 @@ router.post('/:id/badge', function(req, res){
     });
 });
 
-router.post('/:id/join', function(req, res){
-    if(user.req.session != null){
+//determines whether the user is joined to a project or not
+router.get('/:id/join-state', function(req, res){
+
+    if(req.session.user != null){
         User
-        .findOne({_id: user.req.session._id})
+        .findOne({_id: req.session.user._id})
         .exec(function(err, user_result){
             if(err) throw err;
             var joined = false;
             user_result.projects_joined.forEach(function(project){
-                if(req.params.id.equals(project)){
+                if(project.equals(req.params.id)){
                     joined = true;
                 }
             });
-            if(joined == false){
+            if(joined){
+                res.send('true');
+            }
+            else{
+                res.send('false');
+            }
+        }); 
+    }
+    else{
+        res.send('signin');
+    }
+});
+
+//used to add a user to a project
+router.get('/:id/join-yes', function(req, res){
+    if(req.session.user != null){
+        User
+        .findOne({_id: req.session.user._id})
+        .exec(function(err, user_result){
+            if(err) throw err;
+
+            var joined = false;
+            user_result.projects_joined.forEach(function(project){
+                if(project.equals(req.params.id)){
+                    joined = true;
+                }
+            });
+            if(!joined){
                 user_result.projects_joined.push(req.params.id);
-                user_result.save(function(err){
+                user_result.save(function(err, updated_user_result){
                     if(err) throw err;
-                    Project.
-                    find({_id: req.params.id})
-                    .exec(function(err, project_results){
-                        if(err) throw err;
-                        project_results.members.push(user_result._id);
-                        project_results.save(function(err){
-                            if(err) throw err;
-                            res.send(true);
-                        });
-                    });
+                    req.session.user = updated_user_result;
+                    res.send('User was added to this project');
                 });
             }
             else{
-
+                res.send('User already added to project');
             }
         });
     }
-    else{
+});
 
+//used to remove a user from a project
+router.get('/:id/join-no', function(req, res){
+    if(req.session.user != null){
+        User
+        .findOne({_id: req.session.user._id})
+        .exec(function(err, user_result){
+            if(err) throw err;
+
+            user_result.projects_joined.forEach(function(project, index, arr){
+                if(project.equals(req.params.id)){
+                    arr.splice(index, 1);
+                }
+            });
+
+            user_result.save(function(err, updated_user_result){
+                req.session.user = updated_user_result;
+                res.send('User was removed from this project');
+            });
+        });
     }
 });
 

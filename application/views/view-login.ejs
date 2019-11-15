@@ -52,11 +52,11 @@
             //Handles signin validation retreived from server 
 
             <% if (signin_errors == null) { %>
-            var signin_errors = null;
+                var signin_errors = null;
                 var signin_data = null;
             <% } else { %>
-            var signin_errors = <% - signin_errors %>;
-                var signin_data = <% - signin_data %>;
+            var signin_errors = <%- signin_errors %>;
+                var signin_data = <%- signin_data %>;
             <% } %>
 
             if (signin_errors != null) {
@@ -76,11 +76,11 @@
             //Handles signup data retreived from server
             
             <% if (signup_errors == null) { %>
-            var signup_errors = null;
+                var signup_errors = null;
                 var signup_data = null;
             <% } else { %>
-            var signup_errors = <% - signup_errors %>;
-                var signup_data = <% - signup_data %>;
+                var signup_errors = <%- signup_errors %>;
+                var signup_data = <%- signup_data %>;
             <% } %>
 
             if (signup_errors != null) {

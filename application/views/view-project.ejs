@@ -17,8 +17,7 @@
 
                     <div class="image" style="background-image:url(&quot;/uploads/<%= project.photo%>&quot;); background-size:contain; background-position:center;">
                     </div>
-                    <button name="join" class="form-control btn btn-outline-primary bounce animated" type="button">Join This
-                        Project!</button>
+                    <button name="join" class="form-control btn btn-outline-primary bounce animated" type="button"></button>
                 </div>
                 <div class="row">
                     <div class="col-12 col-md-6 offset-md-1 info">
@@ -169,6 +168,14 @@
     <script>
         $(function () {
 
+            var refresh_badges = function (project_data) {
+                $('[name = badges]').empty();
+                project_data.badges.forEach(function (badge) {
+                    $('[name = badges]')
+                        .append(`${badge.icon} ${badge.title}<br />`);
+                });
+            }
+
             $.ajax({
                 type: 'GET',
                 url: '/project/<%= project._id %>/badge',
@@ -194,17 +201,67 @@
                 });
             });
 
-            var refresh_badges = function (project_data) {
-                $('[name = badges]').empty();
-                project_data.badges.forEach(function (badge) {
-                    $('[name = badges]')
-                        .append(`${badge.icon} ${badge.title}<br />`);
-                });
+            const is_joined = 'Joined!';
+            const is_not_joined = 'Join This Project!';
+            const is_not_signed_in = 'Sign In To Join This Project!';
+
+            var refresh_join = function(){
+                $.ajax({
+                    type: 'GET',
+                    url: '/project/<%= project._id %>/join-state',
+                    dataType: 'text',
+                    success: function(result){
+                        if(result == 'true'){
+                            $('[name = join]')
+                            .text(is_joined);
+                        }
+                        else if(result == 'false'){
+                            $('[name = join]')
+                            .text(is_not_joined);
+                        }
+                        else if(result == 'signin'){
+                            $('[name = join]')
+                            .text(is_not_signed_in);
+                        }
+                    }
+                })
+            };
+
+            var update_join = function(){
+                var text = $('[name = join]').text();
+                if(text == is_joined){
+                    $.ajax({
+                        type: 'GET',
+                        url: '/project/<%= project._id %>/join-no',
+                        dataType: 'text',
+                        success: function(result){
+                            console.log(result);
+                            refresh_join();
+                        }
+                    });
+                }
+                else if(text == is_not_joined){
+                    $.ajax({
+                        type: 'GET',
+                        url: '/project/<%= project._id %>/join-yes',
+                        dataType: 'text',
+                        success: function(result){
+                            console.log(result);
+                            refresh_join();
+                        }
+                    });
+                }
+                else if(text == is_not_signed_in){
+                    sessionStorage.page = 'signin';
+                    window.location = '/login';
+                }
             }
 
             $('[name = join]').click(function(){
-                alert('button clicked!');
+               update_join();
             });
+
+            refresh_join();
 
         });
     </script>
