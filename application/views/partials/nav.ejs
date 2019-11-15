@@ -1,9 +1,10 @@
 <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient">
+    <div class="container"><a class="navbar-brand logo" href="/homepage">LOKAHI HUB</a>
     <div class="container"><button data-toggle="collapse" class="navbar-toggler"
             data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="nav navbar-nav ml-auto">
-                <li class="nav-item" role="presentation"><img width = "100%" height = "auto" src = "img/lokahihub.png" class="nav-link active" href="/homepage">Home</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link active" href="/homepage">Home</a></li>
                 <% if(user != null && (user.account_type == 'professional' || user.account_type == 'admin')){ %>
                 <li class="nav-item" role="presentation"><a class="nav-link active" href="/add-project">Add Project</a></li>
                 <% } %>
