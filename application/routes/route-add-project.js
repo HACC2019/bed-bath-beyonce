@@ -16,6 +16,7 @@ const upload = multer({storage: storage});
 
 //Import project schema to read and write to that collection in database
 var Project = require('../models/model-project');
+var User = require('../models/model-user');
 
 router.get('/', function(req, res){
 
@@ -95,10 +96,21 @@ router.post('/submit', upload.single('photo'), function(req, res){
                     date_posted: new Date()
                 });
         
-                project.save(function(err, result){
+                project.save(function(err, project_result){
                     if(err) throw err;
-                    console.log('MongoDB >> Project saved');
-                    res.redirect('/');
+                    User
+                    .findOne({_id: req.session.user._id})
+                    .exec(function(err, user_result){
+                        if(err) throw err;
+                        user_result.projects.push(project_result._id);
+                        user_result.save(function(err){
+                            if(err) throw err;
+                            console.log('MongoDB >> Project saved');
+                            res.redirect('/');
+                        });
+                    });
+
+                    
                 });
             }
             else{
