@@ -13,37 +13,31 @@
                         <%= project.title %>
                     </h2>
 
-                    <div class="image"
-                        style="background-image:url(&quot;/uploads/<%= project.photo%>&quot;); background-size:contain; background-position:center;">
+                    <div class="image" style="background-image:url(&quot;/uploads/<%= project.photo%>&quot;); background-size:contain; background-position:center;">
                     </div>
                     <button class="form-control btn btn-outline-primary bounce animated" type="button">Join This
                         Project!</button>
                 </div>
                 <div class="row">
                     <div class="col-12 col-md-6 offset-md-1 info">
-                        <ul class="list-inline text-right text-muted wobble animated">
-                            <li class="list-inline-item"><i class="donation" aria-hidden="true"></i>
-                                $40,000 raised so far!</li>
-                            <li class="list-inline-item"><i class="support" aria-hidden="true"></i>
-                                45 supporters and counting!</li>
-                        </ul>
                         <h3>Description</h3>
                         <p style="white-space: pre-wrap;""><%= project.description %></p>
                         <h3>Comments</h3>
-                        <div class="row">
+                        <div class="
+                            row">
                             <!-- comments section -->
                             <div class="comments-section">
                                 <!-- comment form -->
-                                <form class="clearfix" action="/project/<%= project._id %>/comment" method="post"
-                                    id="comment_form" style="min-width: 180%;">
+                                <form class="clearfix" action="/project/<%= project._id %>/comment" method="post" id="comment_form"
+                                    style="min-width: 180%;">
                                     <h4>Post a comment:</h4>
-                                    <textarea name="comment_text" id="comment_text" class="form-control" cols="30"
-                                        rows="3"></textarea><br>
+                                    <textarea name="comment_text" id="comment_text" class="form-control" cols="30" rows="3"></textarea><br>
                                     <button class="btn btn-primary btn-sm pull-right" id="submit_comment">Submit
                                         comment</button>
                                 </form>
                                 <br>
-                                <h3><span id="comments_count"><%= project.comments.length %></span> Comment(s)</h3>
+                                <h3><span id="comments_count">
+                                        <%= project.comments.length %></span> Comment(s)</h3>
                             </div>
                             <hr>
                             <% if(project.comments.length > 0){ 
@@ -52,59 +46,73 @@
                                 <div class="card-body">
                                     <div class="topright">
                                         <h6 class="card-text text-muted">
-                                            <%= comment.date_posted.getMonth()+1 %>/<%= comment.date_posted.getDate() %>/<%= comment.date_posted.getFullYear() %>
-                                            <%= comment.date_posted.getHours() %>:<%= comment.date_posted.getMinutes() %>:<%= comment.date_posted.getSeconds() %>
+                                            <%= comment.date_posted.getMonth()+1 %>/
+                                            <%= comment.date_posted.getDate() %>/
+                                            <%= comment.date_posted.getFullYear() %>
+                                            <%= comment.date_posted.getHours() %>:
+                                            <%= comment.date_posted.getMinutes() %>:
+                                            <%= comment.date_posted.getSeconds() %>
                                         </h6>
                                     </div>
-                                    <strong class="card-title"><%= comment.posted_by.fname %>
+                                    <strong class="card-title">
+                                        <%= comment.posted_by.fname %>
                                         <%= comment.posted_by.lname %></strong>
-                                    <p class="card-text"><%= comment.text %></p>
+                                    <p class="card-text">
+                                        <%= comment.text %>
+                                    </p>
                                 </div>
                             </div>
                             <% });
                             } %>
 
-                        </div>
+                    </div>
+
+                </div>
+                <div class="col-12 col-md-4 offset-md-1 meta">
+                    <div class="tags">
+                        <span class="meta-heading">Support</span>
+                        <ul class="list-inline text-success tada animated">
+                            <li class="list-inline-item"><i class="donation" aria-hidden="true"></i>
+                                $40,000 raised so far!</li>
+                            <li class="list-inline-item"><i class="support" aria-hidden="true"></i>
+                                45 supporters and counting!</li>
+                        </ul>
+                        <span class="meta-heading">Badge List</span>
+                        <div name="badges"></div>
+                        <% if(user != null && user.account_type == 'admin'){ %>
+                        <select class="form-control btn btn-outline-primary btn-md dropdown-toggle" name="add-badge">
+                            <option value="null" selected hidden>Add/Remove Badge</option>
+                            <option value="English Language Arts" class="list-item">English Language Arts</option>
+                            <option value="Mathematics" class="list-item">Mathematics</option>
+                            <option value="Science" class="list-item">Science</option>
+                            <option value="Computer Science" class="list-item">Computer Science</option>
+                            <option value="Social Studies" class="list-item">Social Studies</option>
+                            <option value="Career and Technical Education" class="list-item">Career and Technical
+                                Education</option>
+                            <option value="Fine Arts" class="list-item">Fine Arts</option>
+                            <option value="Health" class="list-item">Health</option>
+                            <option value="Physical Education" class="list-item">Physical Education</option>
+                            <option value="World Languages" class="list-item">World Languages</option>
+                        </select>
+                        <% } %>
+                        <hr>
+                        <span class="meta-heading">Date and Time</span>
+                        <span>
+                            <%= project.start_date.toLocaleString('en-US', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true }) %>
+                            -
+                            <%= project.end_date.toLocaleString('en-US', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true }) %>
+                        </span>
+                        <hr>
+                        <span class="meta-heading">Address</span>
+                        <span>
+                            <%= project.address %></span>
+                        <iframe id="gmap_canvas" src="https://maps.google.com/maps?q=<%=project.address%>&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                            width="100%" height="auto">
+                        </iframe>
 
                     </div>
-                    <div class="col-12 col-md-4 offset-md-1 meta">
-                        <div class="tags">
-                            <span class="meta-heading">Badge List</span>
-                            <div name="badges">
-                                <!-- badges appended from jquery -->
-                            </div>
-                            <% if(user != null && user.account_type == 'admin'){ %>
-                            <select class="form-control btn btn-outline-primary btn-md dropdown-toggle" name="add-badge">
-                                <option value="null" selected hidden>Add/Remove Badge</option>
-                                <option value="English Language Arts" class="list-item">English Language Arts</option>
-                                <option value="Mathematics" class="list-item">Mathematics</option>
-                                <option value="Science" class="list-item">Science</option>
-                                <option value="Computer Science" class="list-item">Computer Science</option>
-                                <option value="Social Studies" class="list-item">Social Studies</option>
-                                <option value="Career and Technical Education" class="list-item">Career and Technical
-                                    Education</option>
-                                <option value="Fine Arts" class="list-item">Fine Arts</option>
-                                <option value="Health" class="list-item">Health</option>
-                                <option value="Physical Education" class="list-item">Physical Education</option>
-                                <option value="World Languages" class="list-item">World Languages</option>
-                            </select>
-                            <% } %>
-                            <hr>
-                            <span class="meta-heading">Date and Time</span>
-                            <span>
-                                <%= project.start_date.toLocaleString('en-US', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true }) %> - 
-                                <%= project.end_date.toLocaleString('en-US', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true }) %>
-                            </span>
-                            <hr>
-                            <span class="meta-heading">Address</span>
-                            <span>
-                                <%= project.address %></span>
-                            <iframe id="gmap_canvas" src="https://maps.google.com/maps?q=<%=project.address%>&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="auto">
-                            </iframe>
-                            
-                        </div>
-                    </div>
                 </div>
+            </div>
             </div>
             <br>
             <section class="portfolio-block website gradient">
@@ -129,8 +137,7 @@
                         <div class="form-group">
                             <p>
                                 <label for="myTextArea">Other Options:</label>
-                                <textarea id="myTextArea" rows="3"
-                                    class="form-control">Please specify your donation here.</textarea>
+                                <textarea id="myTextArea" rows="3" class="form-control">Please specify your donation here.</textarea>
                             </p>
                             <button class="btn btn-primary btn-sm pull-right" id="submit_donation">Submit
                                 Donation</button>
@@ -194,7 +201,7 @@
             }
 
 
-    });
+        });
     </script>
     <style>
         .topright {
