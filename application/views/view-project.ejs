@@ -22,9 +22,7 @@
                 <div class="row">
                     <div class="col-12 col-md-6 offset-md-1 info">
                         <h3>Description</h3>
-                        <p>
-                            <%= project.description %>
-                        </p>
+                        <p style="white-space: pre-wrap;"><%= project.description %></p>
                         <h3>Comments</h3>
                         <div class="row">
                             <!-- comments section -->
@@ -86,15 +84,16 @@
                             </select>
                             <% } %>
                             <hr>
-                            <span class="meta-heading">Date</span>
+                            <span class="meta-heading">Date and Time</span>
                             <span>
-                                <%= project.start_date %> -
-                                <%= project.end_date %></span>
+                                <%= project.start_date.toLocaleString('en-US', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true }) %> - 
+                                <%= project.end_date.toLocaleString('en-US', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true }) %>
+                            </span>
                             <hr>
                             <span class="meta-heading">Address</span>
                             <span>
-                                <%= project.location %></span>
-                            <iframe id="gmap_canvas" src="https://maps.google.com/maps?q=<%=project.location%>&t=&z=13&ie=UTF8&iwloc=&output=embed">
+                                <%= project.address %></span>
+                            <iframe id="gmap_canvas" src="https://maps.google.com/maps?q=<%=project.address%>&t=&z=13&ie=UTF8&iwloc=&output=embed">
                             </iframe>
                             
                         </div>

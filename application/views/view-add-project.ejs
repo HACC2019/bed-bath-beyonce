@@ -13,10 +13,10 @@
                         <input class="form-control" type="file" name="photo" placeholder="Upload photo"
                             accept="image/*"//> <br>
                         <input class="form-control" type="text" name="title" placeholder="Project Title:" /><br>
-                        <textarea class="form-control" type="text" name="description" rows="14"
+                        <textarea style="white-space: pre-wrap;" class="form-control" type="text" name="description" rows="14"
                             placeholder="Description:"></textarea><br>
                         <input class="form-control" type="text" name="school" placeholder="School:" /><br>
-                        <input class="form-control" type="text" name="location" placeholder="Location:" /><br>
+                        <input class="form-control" type="text" name="address" placeholder="Address:" /><br>
                         <div class="input-group-prepend"><span class="input-group-text">From </span>
                             <input class="form-control" type="datetime-local" name="sdate" placeholder="Start:" /></div>
                         <br>
@@ -32,23 +32,29 @@
     <% include partials/footer %>
 
     <script>
-        $(function () {
+    $(function () {
         <% if (project_errors == null) { %>
         var project_errors = null;
+        var project_data = null;
         <% } else { %>
-        var project_errors = <% - project_errors %>;
+        var project_errors = <%- project_errors %>;
+        var project_data = <%- project_data %>;
         <% } %>
 
-        if (project_errors != null) {
-                project_errors.forEach(function (project_error) {
-                    $(`[name = ${project_error.param}]`)
-                        .css({
-                            'border': '2px solid red'
-                        })
-                        .after(`${project_error.msg}<br>`)
-                });
-            }
-        });
+        if(project_errors != null) {
+            project_errors.forEach(function (project_error) {
+                $(`[name = ${project_error.param}]`)
+                    .css({
+                        'border': '2px solid red'
+                    })
+                    .after(`${project_error.msg}<br>`)
+            });
+            project_data.forEach(function(data){
+                    $(`[name = ${data.name}]`)
+                    .val(data.value);
+            });
+        }
+    });
     </script>
 </body>
 

@@ -8,9 +8,9 @@ const projectSchema = new Schema({
     comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'comment'}],
     title: String,
     description: String,
-    start_date: String,
-    end_date: String,
-    location: String,
+    start_date: Date,
+    end_date: Date,
+    address: String,
     school: String,
     photo: String,
     date_posted: {type: Date, default: Date.now} 
