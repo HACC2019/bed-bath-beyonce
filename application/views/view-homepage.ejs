@@ -7,19 +7,16 @@
     <main class="page landing-page">
         <section class="portfolio-block block-intro">
             <div class="container">
-                <video allowfullscreen frameborder="0" width="100%" height="auto" controls>
-                <source src="img/LokahiVid.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-                </video>
-                <div class="about-me">
-                    <h1>BED BATH & BEYONCE</h1>
-                </div>
-                <br>
-                <p>Our purpose is to help nourish Hawaii education by providing a CSS (comprehensive, smart, and sustainable) platform
-                for the Department of Education, professionals, and the general public. We are dedicated to create a resourceful
-                database for school projects, volunteering, financial contributions, sustainability practices, and more. Through
-                innovating lasting solutions at the local and regional levels, we seek to empower next generations to be a force of
-                positive change in the world.</p>
+                <img src="img/lok.gif">
+                <p>Our purpose is to help nourish Hawaii education by providing a CSS (comprehensive, smart, and
+                    sustainable) platform
+                    for the Department of Education, professionals, and the general public. We are dedicated to create
+                    a resourceful
+                    database for school projects, volunteering, financial contributions, sustainability practices, and
+                    more. Through
+                    innovating lasting solutions at the local and regional levels, we seek to empower next generations
+                    to be a force of
+                    positive change in the world.</p>
                 <section class="portfolio-block photography"></section>
                 <section class="portfolio-block skills">
                     <div class="container">
@@ -30,22 +27,24 @@
                             <div class="row">
                                 <% if(projects.length > 0){ 
                                     projects.forEach(function(project){ %>
-                                    <div class="col-sm">
-                                        <div class="col-md-12 mx-auto"><a href="/project/<%= project._id%>"><img
-                                                    class="img-fluid image scale-on-hover"
-                                                    src="/uploads/<%= project.photo%>"></a>
-                                            <div class="span3">
-                                                    <h5 class="card-body"><a href="/project/<%= project._id%>" style="color: black;"><%= project.title%></a></h5>
-                                                    <h6 class="card-text"><span class="d-inline-block text-truncate" style="max-width: 200px;"><%= project.description %></h6></span>
-                                                    <div>
-                                                        <a class="btn btn-primary" href="/project/<%= project._id%>"
-                                                            role="button">Read More
-                                                        </a>
-                                                    </div>
+                                <div class="col-sm">
+                                    <div class="col-md-12 mx-auto"><a href="/project/<%= project._id%>"><img class="img-fluid image scale-on-hover"
+                                                src="/uploads/<%= project.photo%>"></a>
+                                        <div class="span3">
+                                            <h5 class="card-body"><a href="/project/<%= project._id%>" style="color: black;">
+                                                    <%= project.title%></a></h5>
+                                            <h6 class="card-text"><span class="d-inline-block text-truncate" style="max-width: 200px;">
+                                                    <%= project.description %>
+                                            </h6></span>
+                                            <div>
+                                                <a class="btn btn-primary" href="/project/<%= project._id%>" role="button">Read
+                                                    More
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
-                                    <% });
+                                </div>
+                                <% });
                                 } %>
                             </div>
                         </div>
@@ -70,22 +69,23 @@
     </section>
     <% include partials/footer %>
     <script>
-    $(function(){
-        $.ajax({
-            type: 'GET',
-            url: '/homepage/calendar',
-            dataType: 'json',
-            success: function(result){
-                render_calendar(result);
-            }
-        });
+        $(function () {
+            $.ajax({
+                type: 'GET',
+                url: '/homepage/calendar',
+                dataType: 'json',
+                success: function (result) {
+                    render_calendar(result);
+                }
+            });
 
-        var render_calendar = function(project_data){
-            $('[name = calendar]').empty();
-            project_data.forEach(function(project){
-                console.log(new Date(project.start_date).toLocaleString('en-US', { month: 'short' }));
-                $('[name = calendar]')
-                .append(`
+            var render_calendar = function (project_data) {
+                $('[name = calendar]').empty();
+                project_data.forEach(function (project) {
+                    console.log(new Date(project.start_date).toLocaleString('en-US', { month: 'short' }));
+                    $('[name = calendar]')
+                        .append(`
+                
                 <div class = "row">
                 <div class="col-2 text-center ">
                     <h1 class="display-4 "><span class="badge date-green">${new Date(project.start_date).toLocaleString('en-US', { day: '2-digit' })}</span></h1>
@@ -108,9 +108,9 @@
             </div>
             <hr style="background-color: white;">
                 `);
-            });
-        }
-    });
+                });
+            }
+        });
     </script>
 </body>
 
