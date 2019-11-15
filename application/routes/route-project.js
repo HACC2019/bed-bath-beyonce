@@ -24,6 +24,7 @@ router.get('/:id', function(req, res){
             Project
             //find 4 project documents that aren't the project that is currently displayed
             .find({_id:{$ne: req.params.id}})
+            .sort({date_posted: -1})
             .limit(4)
             .exec(function(err, result_other_projects){
                 if(err) throw err;
