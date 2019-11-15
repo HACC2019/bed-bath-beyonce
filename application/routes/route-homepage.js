@@ -21,6 +21,7 @@ router.get('/calendar', function(req, res){
     Project
     .find({})
     .sort({start_date: 1})
+    .limit(5)
     .exec(function(err, project_result){
         if(err) throw err;
         res.send(project_result);

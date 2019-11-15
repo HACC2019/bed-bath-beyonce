@@ -33,7 +33,7 @@
                                     style="min-width: 180%;">
                                     <h4>Post a comment:</h4>
                                     <textarea name="comment_text" id="comment_text" class="form-control" cols="30" rows="3"></textarea><br>
-                                    <button class="btn btn-primary btn-sm pull-right" id="submit_comment">Submit
+                                    <button name="comment_button" class="btn btn-primary btn-sm pull-right" id="submit_comment">Submit
                                         comment</button>
                                 </form>
                                 <br>
@@ -47,12 +47,14 @@
                                 <div class="card-body">
                                     <div class="topright">
                                         <h6 class="card-text text-muted">
-                                            <%= comment.date_posted.getMonth()+1 %>/
-                                            <%= comment.date_posted.getDate() %>/
-                                            <%= comment.date_posted.getFullYear() %>
-                                            <%= comment.date_posted.getHours() %>:
-                                            <%= comment.date_posted.getMinutes() %>:
-                                            <%= comment.date_posted.getSeconds() %>
+                                            <%= comment.date_posted.toLocaleString('en-US', { 
+                                                day: '2-digit', 
+                                                month: 'short',
+                                                year: 'numeric', 
+                                                hour: '2-digit',
+                                                minute: '2-digit',
+                                                second: '2-digit', 
+                                                hour12: true }) %>
                                         </h6>
                                     </div>
                                     <strong class="card-title">
@@ -263,6 +265,13 @@
 
             refresh_join();
 
+            <% if(user == null){ %>
+                $('[name = comment_button]').click(function(event){
+                    event.preventDefault();
+                    alert('Please sign in to comment');
+
+                });
+            <% } %>
         });
     </script>
     <style>
