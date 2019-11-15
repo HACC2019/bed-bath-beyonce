@@ -60,7 +60,6 @@ router.post('/submit', upload.single('photo'), function(req, res){
         }
     ];
 
-    req.check('photo', 'Photo is required').notEmpty();
     req.check('title', 'Title is required').notEmpty();
     req.check('description', 'Description is required').notEmpty();
     req.check('school', 'School is required').notEmpty();
