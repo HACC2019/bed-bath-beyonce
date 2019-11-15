@@ -19,7 +19,6 @@
                     positive change in the world.</p>
             </div>
         </section>
-
         <section class="portfolio-block website gradient">
             <div class="container">
                 <div class="heading">
@@ -28,9 +27,6 @@
                 </div>
             </div>
         </section>
-
-
-
         <section class="portfolio-block skills">
             <div class="container">
                 <div class="heading">
@@ -46,9 +42,11 @@
                                 <div class="span3">
                                     <h5 class="card-body"><a href="/project/<%= project._id%>" style="color: black;">
                                             <%= project.title%></a></h5>
-                                    <h6 class="card-text"><span class="d-inline-block text-truncate" style="max-width: 200px;">
+                                    <h6 class="card-text">
+                                        <p class="show-read-more">
                                             <%= project.description %>
-                                        </span></h6>
+                                        </p>
+                                    </h6>
                                     <div>
                                         <a class="btn btn-primary" href="/project/<%= project._id%>" role="button">Read
                                             More
@@ -64,16 +62,25 @@
                 <br>
                 <br>
                 <div class="text-center">
-                <a href="/project-list">See More!</a>
+                    <a href="/project-list">See More!</a>
                 </div>
             </div>
         </section>
-
         <% include partials/footer %>
-
     </main>
     <script>
         $(function () {
+            var maxLength = 250;
+            $(".show-read-more").each(function () {
+                var myStr = $(this).text();
+                if ($.trim(myStr).length > maxLength) {
+                    var newStr = myStr.substring(0, maxLength);
+                    var removedStr = myStr.substring(maxLength, $.trim(myStr).length);
+                    $(this).empty().html(newStr);
+                    $(this).append('<a>...</a>');
+                }
+            });
+
             $.ajax({
                 type: 'GET',
                 url: '/homepage/calendar',
@@ -89,9 +96,9 @@
                     console.log(new Date(project.start_date).toLocaleString('en-US', { month: 'short' }));
                     $('[name = calendar]')
                         .append(`
-                
+                <a href="/project/${project._id}" style="color:white">
                 <div class = "row">
-                <div class="col-2 text-center ">
+                    <div class="col-2 text-center ">
                     <h1 class="display-4 "><span class="badge date-green">${new Date(project.start_date).toLocaleString('en-US', { day: '2-digit' })}</span></h1>
                     <h2>${new Date(project.start_date).toLocaleString('en-US', { month: 'short' })}</h2>
                 </div>
@@ -109,7 +116,8 @@
                     </ul>
                     <p></p>
                 </div>
-            </div>
+                </div>
+            </a>
             <hr style="background-color: white;">
                 `);
                 });
