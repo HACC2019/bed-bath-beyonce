@@ -22,9 +22,7 @@
                 <div class="row">
                     <div class="col-12 col-md-6 offset-md-1 info">
                         <h3>Description</h3>
-                        <p>
-                            <%= project.description %>
-                        </p>
+                        <p style="white-space: pre-wrap;"><%= project.description %></p>
                         <h3>Comments</h3>
                         <div class="row">
                             <!-- comments section -->
@@ -63,14 +61,15 @@
                         </div>
 
                     </div>
-                    <div class="col-12 col-md-3 offset-md-1 meta">
+                    <div class="col-12 col-md-4 offset-md-1 meta">
                         <div class="tags">
                             <span class="meta-heading">Badge List</span>
                             <div name="badges">
                                 <!-- badges appended from jquery -->
                             </div>
+                            <% if(user != null && user.account_type == 'admin'){ %>
                             <select class="form-control btn btn-outline-primary btn-md dropdown-toggle" name="add-badge">
-                                <option value="null" selected hidden>Add Badge +</option>
+                                <option value="null" selected hidden>Add/Remove Badge</option>
                                 <option value="English Language Arts" class="list-item">English Language Arts</option>
                                 <option value="Mathematics" class="list-item">Mathematics</option>
                                 <option value="Science" class="list-item">Science</option>
@@ -83,12 +82,13 @@
                                 <option value="Physical Education" class="list-item">Physical Education</option>
                                 <option value="World Languages" class="list-item">World Languages</option>
                             </select>
+                            <% } %>
                             <hr>
-                            <span class="meta-heading">Date</span>
+                            <span class="meta-heading">Date and Time</span>
                             <span>
-                                <%= project.start_date %> -</span>
-                            <span>
-                                <%= project.end_date %></span>
+                                <%= project.start_date.toLocaleString('en-US', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true }) %> - 
+                                <%= project.end_date.toLocaleString('en-US', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true }) %>
+                            </span>
                             <hr>
                             <span class="meta-heading">Address</span>
                             <span>
@@ -183,7 +183,7 @@
                 $('[name = badges]').empty();
                 project_data.badges.forEach(function (badge) {
                     $('[name = badges]')
-                        .append(` ${badge.icon} ${badge.title}  &nbsp; <button class="fa fa-close" style="color:red"></button>` + "<br />");
+                        .append(`${badge.icon} ${badge.title}<br />`);
                 });
             }
 
