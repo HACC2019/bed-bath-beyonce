@@ -63,49 +63,7 @@
         </div>
     </section>
     <section class="portfolio-block website gradient">
-        <div style="margin:46px;" name="calendar">
-            <div class="row row-striped">
-                <div class="col-2 text-center ">
-                    <h1 class="display-4 "><span class="badge date-green">14</span></h1>
-                    <h2>FEB</h2>
-                </div>
-                <div class="col-10">
-                    <h3 class="text-uppercase"><strong>Valentine's Day</strong></h3>
-                    <ul class="list-inline">
-                        <li class="list-inline-item"><i class="fa fa-calendar-o" aria-hidden="true"></i>
-                            Wednesday</li>
-                        <li class="list-inline-item"><i class="fa fa-clock-o" aria-hidden="true"></i>
-                            18:30 PM - 22:00
-                            PM</li>
-                        <li class="list-inline-item"><i class="fa fa-location-arrow" aria-hidden="true"></i>
-                            Restaurant</li>
-                    </ul>
-                    <p>Lorem ipsum dolsit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                        incididunt ut labore
-                        et dolore magna aliqua.</p>
-                </div>
-            </div>
-            <div class="row row-striped">
-                <div class="col-2 text-center">
-                    <h1 class="display-4"><span class="badge badge-grey">26</span></h1>
-                    <h2>JAN</h2>
-                </div>
-                <div class="col-10">
-                    <h3 class="text-uppercase"><strong>Work Meeting</strong></h3>
-                    <ul class="list-inline">
-                        <li class="list-inline-item"><i class="fa fa-calendar-o" aria-hidden="true"></i>
-                            Friday</li>
-                        <li class="list-inline-item"><i class="fa fa-clock-o" aria-hidden="true"></i>
-                            2:30 PM - 4:00 PM</li>
-                        <li class="list-inline-item"><i class="fa fa-location-arrow" aria-hidden="true"></i>
-                            Room 1408</li>
-                    </ul>
-                    <p>Lorem ipsum dolsit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                        incididunt ut labore
-                        et dolore magna aliqua.</p>
-                </div>
-            </div>
-        </div>
+        <div style="margin:46px;" name="calendar"></div>
     </section>
     <% include partials/footer %>
     <script>
@@ -125,7 +83,7 @@
                 console.log(project.start_date.toLocaleString('en-US', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true }));
                 $('[name = calendar]')
                 .append(`
-                <div class="row row-striped">
+                <div class = "row">
                 <div class="col-2 text-center ">
                     <h1 class="display-4 "><span class="badge date-green">14</span></h1>
                     <h2>FEB</h2>
