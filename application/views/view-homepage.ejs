@@ -17,57 +17,61 @@
                     innovating lasting solutions at the local and regional levels, we seek to empower next generations
                     to be a force of
                     positive change in the world.</p>
-                <section class="portfolio-block photography"></section>
-                <section class="portfolio-block skills">
-                    <div class="container">
-                        <div class="heading">
-                            <h2>THE LATEST (FEED)</h2>
-                        </div>
-                        <div class=container>
-                            <div class="row">
-                                <% if(projects.length > 0){ 
+            </div>
+        </section>
+
+        <section class="portfolio-block website gradient">
+            <div class="container">
+                <div class="heading">
+                    <h2>UPCOMING EVENTS!</h2>
+                    <div style="margin:46px;" name="calendar"></div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <section class="portfolio-block skills">
+            <div class="container">
+                <div class="heading">
+                    <h2>THE LATEST (FEED)</h2>
+                </div>
+                <div class=container>
+                    <div class="row">
+                        <% if(projects.length > 0){ 
                                     projects.forEach(function(project){ %>
-                                <div class="col-sm">
-                                    <div class="col-md-12 mx-auto"><a href="/project/<%= project._id%>"><img class="img-fluid image scale-on-hover"
-                                                src="/uploads/<%= project.photo%>"></a>
-                                        <div class="span3">
-                                            <h5 class="card-body"><a href="/project/<%= project._id%>" style="color: black;">
-                                                    <%= project.title%></a></h5>
-                                            <h6 class="card-text"><span class="d-inline-block text-truncate" style="max-width: 200px;">
-                                                    <%= project.description %>
-                                            </h6></span>
-                                            <div>
-                                                <a class="btn btn-primary" href="/project/<%= project._id%>" role="button">Read
-                                                    More
-                                                </a>
-                                            </div>
-                                        </div>
+                        <div class="col-sm">
+                            <div class="col-md-12 mx-auto"><a href="/project/<%= project._id%>"><img class="img-fluid image scale-on-hover"
+                                        src="/uploads/<%= project.photo%>"></a>
+                                <div class="span3">
+                                    <h5 class="card-body"><a href="/project/<%= project._id%>" style="color: black;">
+                                            <%= project.title%></a></h5>
+                                    <h6 class="card-text"><span class="d-inline-block text-truncate" style="max-width: 200px;">
+                                            <%= project.description %>
+                                        </span></h6>
+                                    <div>
+                                        <a class="btn btn-primary" href="/project/<%= project._id%>" role="button">Read
+                                            More
+                                        </a>
                                     </div>
                                 </div>
-                                <% });
-                                } %>
                             </div>
                         </div>
-                        <br>
-                        <a href="/project-list">See More!</a>
+                        <% });
+                                } %>
                     </div>
-                </section>
-    </main>
-    <section class="portfolio-block call-to-action border-bottom">
-        <div class="container">
-            <div class="d-flex justify-content-center align-items-center content">
-                <h3>Like what you see?</h3><button class="btn btn-outline-primary btn-lg" type="button">REGISTER
-                    NOW!</button>
+                </div>
+                <br>
+                <br>
+                <div class="text-center">
+                <a href="/project-list">See More!</a>
+                </div>
             </div>
-        </div>
-    </section>
-    <section class="portfolio-block website gradient">
-        <div class="heading">
-            <h2>UPCOMING EVENTS!</h2>
-        </div>
-        <div style="margin:46px;" name="calendar"></div>
-    </section>
-    <% include partials/footer %>
+        </section>
+
+        <% include partials/footer %>
+
+    </main>
     <script>
         $(function () {
             $.ajax({
@@ -114,4 +118,4 @@
     </script>
 </body>
 
-</html>>
+</html>
