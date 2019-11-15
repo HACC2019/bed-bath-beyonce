@@ -121,4 +121,42 @@ router.post('/:id/badge', function(req, res){
     });
 });
 
+router.post('/:id/join', function(req, res){
+    if(user.req.session != null){
+        User
+        .findOne({_id: user.req.session._id})
+        .exec(function(err, user_result){
+            if(err) throw err;
+            var joined = false;
+            user_result.projects_joined.forEach(function(project){
+                if(req.params.id.equals(project)){
+                    joined = true;
+                }
+            });
+            if(joined == false){
+                user_result.projects_joined.push(req.params.id);
+                user_result.save(function(err){
+                    if(err) throw err;
+                    Project.
+                    find({_id: req.params.id})
+                    .exec(function(err, project_results){
+                        if(err) throw err;
+                        project_results.members.push(user_result._id);
+                        project_results.save(function(err){
+                            if(err) throw err;
+                            res.send(true);
+                        });
+                    });
+                });
+            }
+            else{
+
+            }
+        });
+    }
+    else{
+
+    }
+});
+
 module.exports = router;

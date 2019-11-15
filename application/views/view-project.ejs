@@ -15,7 +15,7 @@
 
                     <div class="image" style="background-image:url(&quot;/uploads/<%= project.photo%>&quot;); background-size:contain; background-position:center;">
                     </div>
-                    <button class="form-control btn btn-outline-primary bounce animated" type="button">Join This
+                    <button name="join" class="form-control btn btn-outline-primary bounce animated" type="button">Join This
                         Project!</button>
                 </div>
                 <div class="row">
@@ -200,6 +200,9 @@
                 });
             }
 
+            $('[name = join]').click(function(){
+                alert('button clicked!');
+            });
 
         });
     </script>
