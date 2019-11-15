@@ -17,4 +17,14 @@ router.get('/', function(req, res){
     });
 });
 
+router.get('/calendar', function(req, res){
+    Project
+    .find({})
+    .sort({start_date: 1})
+    .exec(function(err, project_result){
+        if(err) throw err;
+        res.send(project_result);
+    });
+});
+
 module.exports = router;

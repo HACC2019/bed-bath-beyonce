@@ -63,7 +63,7 @@
         </div>
     </section>
     <section class="portfolio-block website gradient">
-        <div style="margin:46px;">
+        <div style="margin:46px;" name="calendar">
             <div class="row row-striped">
                 <div class="col-2 text-center ">
                     <h1 class="display-4 "><span class="badge date-green">14</span></h1>
@@ -108,6 +108,48 @@
         </div>
     </section>
     <% include partials/footer %>
+    <script>
+    $(function(){
+        $.ajax({
+            type: 'GET',
+            url: '/homepage/calendar',
+            dataType: 'json',
+            success: function(result){
+                render_calendar(result);
+            }
+        });
+
+        var render_calendar = function(project_data){
+            $('[name = calendar]').empty();
+            project_data.forEach(function(project){
+                console.log(project.start_date.toLocaleString('en-US', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true }));
+                $('[name = calendar]')
+                .append(`
+                <div class="row row-striped">
+                <div class="col-2 text-center ">
+                    <h1 class="display-4 "><span class="badge date-green">14</span></h1>
+                    <h2>FEB</h2>
+                </div>
+                <div class="col-10">
+                    <h3 class="text-uppercase"><strong>${project.title}</strong></h3>
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><i class="fa fa-calendar-o" aria-hidden="true"></i>
+                            ${project.start_date.toLocaleString('en-US', {weekday: 'short'})}</li>
+                        <li class="list-inline-item"><i class="fa fa-clock-o" aria-hidden="true"></i>
+                            ${project.start_date.toLocaleString('en-US', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true })} - 
+                            ${project.end_date.toLocaleString('en-US', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true })}
+                            </li>
+                        <li class="list-inline-item"><i class="fa fa-location-arrow" aria-hidden="true"></i>
+                            ${project.address}</li>
+                    </ul>
+                    <p>${project.description}</p>
+                </div>
+            </div>
+                `);
+            });
+        }
+    });
+    </script>
 </body>
 
 </html>>
