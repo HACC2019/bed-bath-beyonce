@@ -175,7 +175,7 @@
                 $('[name = badges]').empty();
                 project_data.badges.forEach(function (badge) {
                     $('[name = badges]')
-                        .append(`${badge.icon} ${badge.title}<br />`);
+                        .append(` <a href="/img/cert.pdf" target="_blank">${badge.icon} ${badge.title}<br /></a>`);
                 });
             }
 
