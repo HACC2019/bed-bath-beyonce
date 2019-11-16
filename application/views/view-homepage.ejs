@@ -30,14 +30,14 @@
         <section class="portfolio-block skills">
             <div class="container">
                 <div class="heading">
-                    <h2>THE LATEST (FEED)</h2>
+                    <h2>THE LATEST</h2>
                 </div>
                 <div class=container>
                     <div class="row">
                         <% if(projects.length > 0){ 
                                     projects.forEach(function(project){ %>
-                        <div class="col-sm">
-                            <div class="col-md-12 mx-auto"><a href="/project/<%= project._id%>"><img class="img-fluid image scale-on-hover"
+                       
+                            <div class="col-md-5 mx-auto"><a href="/project/<%= project._id%>"><img class="img-fluid image scale-on-hover"
                                         src="/uploads/<%= project.photo%>"></a>
                                 <div class="span3">
                                     <h5 class="card-body"><a href="/project/<%= project._id%>" style="color: black;">
@@ -54,7 +54,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        
                         <% });
                                 } %>
                     </div>
