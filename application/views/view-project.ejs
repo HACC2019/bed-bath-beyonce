@@ -9,7 +9,8 @@
             <div class="container">
                 <div class="heading">
                     <!-- <h2>Route to a specific program</h2> -->
-                    <button name="supp_button" class="btn btn-primary center-block" style="background-color: green!important; color: #ffffff" id="support">Donation has been submitted!</button>
+                    <button name="supp_button" class="btn btn-primary center-block" style="background-color: green!important; color: #ffffff"
+                        id="support">Donation has been submitted!</button>
                     <br>
                     <br>
                     <h2>
@@ -124,7 +125,6 @@
                     <div class="heading">
                         <h2>Pledge Support</h2>
                     </div>
-
                     <form style="min-width: 100%;">
                         <div class="form-group">
                             <label for="selectAmount">Enter Donation Amount:</label>
@@ -151,14 +151,15 @@
             </section>
             <br>
             <br>
-            <div class="more-projects">
+            <div class="container">
                 <h3 class="text-center">More Programs</h3>
-                <div class="row gallery">
+                <div class="row">
                     <% if(other_projects.length > 0){ 
                         other_projects.forEach(function(project){ %>
-                    <div class="col-md-4 col-lg-3">
-                        <div class="item"><a href="/project/<%= project._id%>"><img class="img-fluid scale-on-hover"
-                                    src="/uploads/<%= project.photo%>"></a></div>
+                    <div class="mt-5 col-md-3 mx-auto">
+                        <a href="/project/<%= project._id%>">
+                            <img class="img-fluid scale-on-hover" src="/uploads/<%= project.photo%>">
+                        </a>
                     </div>
                     <% });
                     } %>
@@ -208,66 +209,66 @@
             const is_not_joined = 'Join This Project!';
             const is_not_signed_in = 'Sign In To Join This Project!';
 
-            var refresh_join = function(){
+            var refresh_join = function () {
                 $.ajax({
                     type: 'GET',
                     url: '/project/<%= project._id %>/join-state',
                     dataType: 'text',
-                    success: function(result){
-                        if(result == 'true'){
+                    success: function (result) {
+                        if (result == 'true') {
                             $('[name = join]')
-                            .text(is_joined);
+                                .text(is_joined);
                         }
-                        else if(result == 'false'){
+                        else if (result == 'false') {
                             $('[name = join]')
-                            .text(is_not_joined);
+                                .text(is_not_joined);
                         }
-                        else if(result == 'signin'){
+                        else if (result == 'signin') {
                             $('[name = join]')
-                            .text(is_not_signed_in);
+                                .text(is_not_signed_in);
                         }
                     }
                 })
             };
 
-            var update_join = function(){
+            var update_join = function () {
                 var text = $('[name = join]').text();
-                if(text == is_joined){
+                if (text == is_joined) {
                     $.ajax({
                         type: 'GET',
                         url: '/project/<%= project._id %>/join-no',
                         dataType: 'text',
-                        success: function(result){
+                        success: function (result) {
                             console.log(result);
                             refresh_join();
                         }
                     });
                 }
-                else if(text == is_not_joined){
+                else if (text == is_not_joined) {
                     $.ajax({
                         type: 'GET',
                         url: '/project/<%= project._id %>/join-yes',
                         dataType: 'text',
-                        success: function(result){
+                        success: function (result) {
                             console.log(result);
                             refresh_join();
                         }
                     });
                 }
-                else if(text == is_not_signed_in){
+                else if (text == is_not_signed_in) {
                     sessionStorage.page = 'signin';
                     window.location = '/login';
                 }
             }
 
-            $('[name = join]').click(function(){
-               update_join();
+            $('[name = join]').click(function () {
+                update_join();
             });
 
             refresh_join();
 
-            <% if(user == null){ %>
-                $('[name = comment_button]').click(function(event){
+            <% if (user == null) { %>
+                $('[name = comment_button]').click(function (event) {
                     event.preventDefault();
                     alert('Please sign in to comment');
 
