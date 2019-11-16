@@ -77,9 +77,9 @@
                     <div class="tags">
                         <span class="meta-heading">Support</span>
                         <ul class="list-inline text-success tada animated">
-                            <li class="list-inline-item"><i class="donation" aria-hidden="true"></i>
+                            <li class="list-item"><i class="donation" aria-hidden="true"></i>
                                 $40,000 raised so far!</li>
-                            <li name="join_amount" class="list-inline-item"><i class="support" aria-hidden="true"></i></li>
+                            <li name="join_amount" class="list-item"><i class="support" aria-hidden="true"></i></li>
                         </ul>
                         <span class="meta-heading">Badge List</span>
                         <div name="badges"></div>
@@ -302,6 +302,11 @@
                 $('[name = comment_button]').click(function (event) {
                     event.preventDefault();
                     alert('Please sign in to comment');
+
+                });
+                $('[name = donate_button]').click(function (event) {
+                    event.preventDefault();
+                    alert('Please sign in to donate');
 
                 });
             <% } %>
