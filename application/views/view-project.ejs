@@ -142,7 +142,7 @@
                                 <label for="myTextArea">Other Options:</label>
                                 <textarea id="myTextArea" rows="3" class="form-control">Please specify your donation here.</textarea>
                             </p>
-                            <button class="btn btn-primary btn-sm pull-right" id="submit_donation">Submit
+                            <button name="donate_button" class="btn btn-primary btn-sm pull-right" id="submit_donation">Submit
                                 Donation</button>
                         </div>
                     </form>
@@ -282,6 +282,21 @@
             });
 
             refresh_join();
+
+            $('[name = donate_button]').click(function(){
+                event.preventDefault();
+                sessionStorage.donate = 'yes';
+                window.location = '/project/<%= project._id %>';
+            });
+
+            console.log('value is',sessionStorage.donate);
+            if(sessionStorage.donate == null || sessionStorage.donate == 'null'){
+                $('#support').hide();
+            }
+            else if(sessionStorage.donate == 'yes'){
+                $('#support').show();
+                sessionStorage.donate = 'null';
+            }
 
             <% if (user == null) { %>
                 $('[name = comment_button]').click(function (event) {
