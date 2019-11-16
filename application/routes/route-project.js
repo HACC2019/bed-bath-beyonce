@@ -200,4 +200,13 @@ router.get('/:id/join-no', function(req, res){
     }
 });
 
+router.get('/:id/join-amount', function(req, res){
+    User
+    .find({projects_joined: {$in: [req.params.id]}})
+    .exec(function(err, result){
+        if(err) throw err;
+        res.send({val: result.length});
+    });
+});
+
 module.exports = router;

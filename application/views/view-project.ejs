@@ -78,8 +78,7 @@
                         <ul class="list-inline text-success tada animated">
                             <li class="list-inline-item"><i class="donation" aria-hidden="true"></i>
                                 $40,000 raised so far!</li>
-                            <li class="list-inline-item"><i class="support" aria-hidden="true"></i>
-                                45 supporters and counting!</li>
+                            <li name="join_amount" class="list-inline-item"><i class="support" aria-hidden="true"></i></li>
                         </ul>
                         <span class="meta-heading">Badge List</span>
                         <div name="badges"></div>
@@ -179,6 +178,22 @@
                 });
             }
 
+            var refresh_join_amount = function(){
+                $.ajax({
+                    type: 'GET',
+                    url: '/project/<%= project._id %>/join-amount',
+                    dataType: 'json',
+                    success: function(result){
+                        if(result.val == 1){
+                            $('[name = join_amount]').text(`${result.val} user has joined!`);
+                        }
+                        else{
+                            $('[name = join_amount]').text(`${result.val} users have joined!`);
+                        }
+                    }
+                });
+            }
+
             $.ajax({
                 type: 'GET',
                 url: '/project/<%= project._id %>/badge',
@@ -226,6 +241,7 @@
                             $('[name = join]')
                             .text(is_not_signed_in);
                         }
+                        refresh_join_amount();
                     }
                 })
             };
@@ -265,6 +281,10 @@
             });
 
             refresh_join();
+
+            refresh_join_amount();
+
+
 
             <% if(user == null){ %>
                 $('[name = comment_button]').click(function(event){
